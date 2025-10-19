@@ -6,7 +6,7 @@
  *
  * - analyzeMarketEntry - A function that analyzes market entry potential.
  */
-import { ai } from '@/ai/genkit';
+import { ai, z } from '@/ai/genkit';
 import { 
     AnalyzeMarketEntryInputSchema, 
     AnalyzeMarketEntryOutputSchema,
@@ -15,11 +15,21 @@ import {
 } from './types';
 
 
+const analysisTool = ai.defineTool(
+  {
+    name: 'marketAnalysis',
+    description: 'Tool for providing market entry analysis.',
+    inputSchema: AnalyzeMarketEntryOutputSchema,
+    outputSchema: z.void(),
+  },
+  async () => {}
+);
+
 const analyzeMarketEntryPrompt = ai.definePrompt({
   name: 'analyzeMarketEntryPrompt',
   input: { schema: AnalyzeMarketEntryInputSchema },
-  output: { schema: AnalyzeMarketEntryOutputSchema },
-  model: 'googleai/gemini-pro',
+  tools: [analysisTool],
+  model: 'googleai/gemini-1.5-flash',
   prompt: `Kamu adalah seorang Business Analyst AI yang ahli di pasar e-commerce Indonesia. Gaya bicaramu santai, to the point, dan mudah dimengerti UMKM.
 
 Tugasmu adalah memberikan evaluasi cepat dan tajam terhadap sebuah ide bisnis berdasarkan data berikut:
@@ -41,19 +51,33 @@ Kondisi Pasar Umum: {{{marketConditionSummary}}}
 **PENTING**:
 -   Gunakan HANYA informasi dari data di atas. Jangan berasumsi.
 -   Buat seolah-olah kamu sedang memberi nasihat cepat ke teman bisnismu.
--   Output harus berupa objek JSON yang valid.
+-   Panggil tool 'marketAnalysis' untuk memberikan jawabanmu.
 
-Contoh Output (Untung):
+Contoh Panggilan Tool (Untung):
+\`\`\`json
 {
-  "evaluation": "Strategi kamu terlihat sehat!",
-  "keyConsiderations": "ROAS 3.15x berarti setiap Rp1 juta iklan menghasilkan omzet Rp3,15 juta. Ini efisiensi yang bagus."
+  "toolRequest": {
+    "name": "marketAnalysis",
+    "input": {
+      "evaluation": "Strategi kamu terlihat sehat!",
+      "keyConsiderations": "ROAS 3.15x berarti setiap Rp1 juta iklan menghasilkan omzet Rp3,15 juta. Ini efisiensi yang bagus."
+    }
+  }
 }
+\`\`\`
 
-Contoh Output (Rugi):
+Contoh Panggilan Tool (Rugi):
+\`\`\`json
 {
-  "evaluation": "Wah, strategi kamu masih berisiko.",
-  "keyConsiderations": "Penyebab utama: Biaya operasional terlalu tinggi sehingga laba tahunan negatif. Perlu ada efisiensi."
+  "toolRequest": {
+    "name": "marketAnalysis",
+    "input": {
+      "evaluation": "Wah, strategi kamu masih berisiko.",
+      "keyConsiderations": "Penyebab utama: Biaya operasional terlalu tinggi sehingga laba tahunan negatif. Perlu ada efisiensi."
+    }
+  }
 }
+\`\`\`
 `
 });
 
@@ -64,8 +88,12 @@ const analyzeMarketEntryFlow = ai.defineFlow(
     outputSchema: AnalyzeMarketEntryOutputSchema,
   },
   async (input) => {
-    const { output } = await analyzeMarketEntryPrompt(input);
-    return output!;
+    const response = await analyzeMarketEntryPrompt(input);
+    const toolRequest = response.toolRequest('marketAnalysis');
+    if (!toolRequest) {
+      throw new Error('AI did not return the expected analysis tool request.');
+    }
+    return toolRequest.input;
   }
 );
 
