@@ -17,7 +17,6 @@ import {
 
 const analyzeMarketEntryPrompt = ai.definePrompt({
   name: 'analyzeMarketEntryPrompt',
-  model: 'googleai/gemini-pro',
   input: { schema: AnalyzeMarketEntryInputSchema },
   output: { schema: AnalyzeMarketEntryOutputSchema },
   prompt: `Kamu adalah seorang Business Analyst AI yang ahli di pasar e-commerce Indonesia. Gaya bicaramu santai, to the point, dan mudah dimengerti UMKM.

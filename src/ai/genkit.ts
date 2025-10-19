@@ -13,6 +13,7 @@ export const ai = genkit({
   plugins: [
     googleAI({
       apiKey: apiKey,
+      defaultModel: 'gemini-pro',
     }),
   ],
   logLevel: 'debug',
