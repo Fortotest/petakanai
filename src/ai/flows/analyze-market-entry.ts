@@ -15,20 +15,10 @@ import {
 } from './types';
 
 
-const analysisTool = ai.defineTool(
-  {
-    name: 'marketAnalysis',
-    description: 'Tool for providing market entry analysis.',
-    inputSchema: AnalyzeMarketEntryOutputSchema,
-    outputSchema: z.void(),
-  },
-  async () => {}
-);
-
 const analyzeMarketEntryPrompt = ai.definePrompt({
   name: 'analyzeMarketEntryPrompt',
   input: { schema: AnalyzeMarketEntryInputSchema },
-  tools: [analysisTool],
+  output: { schema: AnalyzeMarketEntryOutputSchema },
   model: 'googleai/gemini-1.5-flash',
   prompt: `Kamu adalah seorang Business Analyst AI yang ahli di pasar e-commerce Indonesia. Gaya bicaramu santai, to the point, dan mudah dimengerti UMKM.
 
@@ -44,40 +34,14 @@ Kondisi Pasar Umum: {{{marketConditionSummary}}}
 2.  **Berikan \`evaluation\`**: 
     -   Jika untung & ROAS bagus (>2.5x), berikan kalimat positif dan kuat. Contoh: "Strategi kamu terlihat sehat!", "Ini ide yang menjanjikan, bro!".
     -   Jika rugi atau ROAS rendah (<1.5x) atau BEP tidak tercapai, berikan kalimat yang menunjukkan risiko. Contoh: "Wah, strategi kamu masih berisiko.", "Waduh, ini perlu dihitung ulang.".
-**Berikan \`keyConsiderations\`**: Lanjutkan dengan 1-2 kalimat penjelasan singkat. Fokus pada **SATU** poin paling krusial.
+3.  **Berikan \`keyConsiderations\`**: Lanjutkan dengan 1-2 kalimat penjelasan singkat. Fokus pada **SATU** poin paling krusial.
     -   Jika untung: Sebutkan apa yang membuatnya bagus. Contoh: "ROAS di atas 3x menunjukkan efisiensi iklan yang baik."
     -   Jika rugi: Sebutkan penyebab utamanya. Contoh: "Penyebab utamanya adalah BEP yang lebih tinggi dari target penjualan, artinya biaya belum tertutup." atau "ROAS yang rendah jadi sinyal strategi pemasaran belum efektif."
 
 **PENTING**:
 -   Gunakan HANYA informasi dari data di atas. Jangan berasumsi.
 -   Buat seolah-olah kamu sedang memberi nasihat cepat ke teman bisnismu.
--   Panggil tool 'marketAnalysis' untuk memberikan jawabanmu.
-
-Contoh Panggilan Tool (Untung):
-\`\`\`json
-{
-  "toolRequest": {
-    "name": "marketAnalysis",
-    "input": {
-      "evaluation": "Strategi kamu terlihat sehat!",
-      "keyConsiderations": "ROAS 3.15x berarti setiap Rp1 juta iklan menghasilkan omzet Rp3,15 juta. Ini efisiensi yang bagus."
-    }
-  }
-}
-\`\`\`
-
-Contoh Panggilan Tool (Rugi):
-\`\`\`json
-{
-  "toolRequest": {
-    "name": "marketAnalysis",
-    "input": {
-      "evaluation": "Wah, strategi kamu masih berisiko.",
-      "keyConsiderations": "Penyebab utama: Biaya operasional terlalu tinggi sehingga laba tahunan negatif. Perlu ada efisiensi."
-    }
-  }
-}
-\`\`\`
+-   Hasilkan output dalam format JSON yang sesuai dengan skema.
 `
 });
 
@@ -89,11 +53,11 @@ const analyzeMarketEntryFlow = ai.defineFlow(
   },
   async (input) => {
     const response = await analyzeMarketEntryPrompt(input);
-    const toolRequest = response.toolRequest('marketAnalysis');
-    if (!toolRequest) {
-      throw new Error('AI did not return the expected analysis tool request.');
+    const output = response.output();
+    if (!output) {
+      throw new Error('AI did not return the expected analysis output.');
     }
-    return toolRequest.input;
+    return output;
   }
 );
 
