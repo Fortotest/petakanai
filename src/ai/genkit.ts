@@ -1,3 +1,4 @@
+
 /**
  * @fileoverview This file initializes the Genkit AI platform. It should be imported
  * ONLY once at the root of the application.
@@ -13,7 +14,6 @@ export const ai = genkit({
   plugins: [
     googleAI({
       apiKey: apiKey,
-      defaultModel: 'gemini-pro',
     }),
   ],
   logLevel: 'debug',
