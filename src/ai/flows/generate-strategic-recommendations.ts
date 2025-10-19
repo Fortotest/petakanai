@@ -18,7 +18,7 @@ import {
 
 const generateStrategicRecommendationsPrompt = ai.definePrompt({
   name: 'generateStrategicRecommendationsPrompt',
-  model: 'googleai/gemini-1.5-flash',
+  model: 'googleai/gemini-pro',
   input: { schema: StrategicRecommendationsInputSchema },
   output: { schema: StrategicRecommendationsOutputSchema },
   prompt: `Kamu adalah seorang Business Strategist AI yang jago banget ngasih saran praktis buat UMKM di Indonesia. Gaya bicaramu santai, memotivasi, dan solutif.
