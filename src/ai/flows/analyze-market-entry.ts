@@ -6,7 +6,7 @@
  *
  * - analyzeMarketEntry - A function that analyzes market entry potential.
  */
-import { ai, z } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import { 
     AnalyzeMarketEntryInputSchema, 
     AnalyzeMarketEntryOutputSchema,
@@ -53,7 +53,7 @@ const analyzeMarketEntryFlow = ai.defineFlow(
   },
   async (input) => {
     const response = await analyzeMarketEntryPrompt(input);
-    const output = response.output();
+    const output = response.output;
     if (!output) {
       throw new Error('AI did not return the expected analysis output.');
     }

@@ -7,7 +7,7 @@
  * - generateStrategicRecommendations - A function that generates a list of actionable recommendations.
  */
 
-import { ai, z } from '@/ai/genkit';
+import { ai } from '@/ai/genkit';
 import {
     StrategicRecommendationsInputSchema,
     StrategicRecommendationsOutputSchema,
@@ -62,7 +62,7 @@ const generateStrategicRecommendationsFlow = ai.defineFlow(
   },
   async (input) => {
     const response = await generateStrategicRecommendationsPrompt(input);
-    const output = response.output();
+    const output = response.output;
     if (!output) {
       throw new Error('AI did not return the expected recommendations output.');
     }
