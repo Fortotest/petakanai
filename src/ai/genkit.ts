@@ -4,7 +4,7 @@
  * ONLY once at the root of the application.
  */
 import {genkit} from 'genkit';
-import {googleAI} from '@genkit-ai/googleai';
+import {googleAI} from '@genkit-ai/google-genai';
 import {z} from 'zod';
 
 // Logic to select the API key. Use GEMINI_API_KEY if available, otherwise fallback to GOOGLE_API_KEY.
