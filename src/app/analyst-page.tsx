@@ -369,8 +369,8 @@ export default function AnalystPage() {
       if (result.aiError) {
           toast({
               variant: "destructive",
-              title: "Waduh, AI-nya lagi pusing nih!",
-              description: "Coba refresh atau perbaiki datamu. Kalau masih error, kasih jeda beberapa saat, ya!",
+              title: result.marketAnalysis.evaluation,
+              description: result.marketAnalysis.keyConsiderations,
           });
           playNotificationSound();
       }
@@ -450,7 +450,7 @@ export default function AnalystPage() {
               />
             </div>
           <p className="text-body text-muted-foreground max-w-2xl mx-auto">Simulasikan strategi bisnis kamu dalam hitungan detik. Gratis, instan, dan akurat—petakan.ai bantu kamu ambil keputusan sebelum buang waktu &amp; modal.</p>
-           <div className="mt-6">
+           <div className="mt-6 mb-4">
              <Button asChild size="lg" className="rounded-full h-12 px-8">
                <Link href="#cek-strategi">
                   Mulai Simulasi Gratis
@@ -458,7 +458,7 @@ export default function AnalystPage() {
                </Link>
              </Button>
            </div>
-           <p className="text-caption text-muted-foreground text-center mt-4 mb-8">
+           <p className="text-caption text-muted-foreground text-center">
               Isi data sesuai kondisi bisnismu untuk
               <br />
               hasil simulasi yang akurat.
@@ -829,11 +829,11 @@ export default function AnalystPage() {
                         <Card className="flex-1">
                              <Tabs defaultValue="monthly" className="w-full">
                                 <CardHeader>
-                                    <div className="space-y-2">
+                                    <div className="flex flex-wrap items-center justify-between gap-2">
                                         <CardTitle>Laporan Untung Rugi</CardTitle>
-                                        <TabsList className="grid w-full max-w-[180px] grid-cols-2 h-8">
-                                            <TabsTrigger value="monthly" className="h-6 text-xs">Bulanan</TabsTrigger>
-                                            <TabsTrigger value="weekly" className="h-6 text-xs">Mingguan</TabsTrigger>
+                                        <TabsList className="grid grid-cols-2 h-8 text-xs p-1">
+                                            <TabsTrigger value="monthly" className="h-6 px-2 text-xs">Bulanan</TabsTrigger>
+                                            <TabsTrigger value="weekly" className="h-6 px-2 text-xs">Mingguan</TabsTrigger>
                                         </TabsList>
                                     </div>
                                 </CardHeader>
@@ -850,11 +850,11 @@ export default function AnalystPage() {
                          <Card className="flex-1">
                             <Tabs defaultValue="monthly" className="w-full">
                                 <CardHeader>
-                                     <div className="space-y-2">
+                                     <div className="flex flex-wrap items-center justify-between gap-2">
                                         <CardTitle>Simulasi Arus Kas</CardTitle>
-                                        <TabsList className="grid w-full max-w-[180px] grid-cols-2 h-8">
-                                            <TabsTrigger value="monthly" className="h-6 text-xs">Bulanan</TabsTrigger>
-                                            <TabsTrigger value="weekly" className="h-6 text-xs">Mingguan</TabsTrigger>
+                                        <TabsList className="grid grid-cols-2 h-8 text-xs p-1">
+                                            <TabsTrigger value="monthly" className="h-6 px-2 text-xs">Bulanan</TabsTrigger>
+                                            <TabsTrigger value="weekly" className="h-6 px-2 text-xs">Mingguan</TabsTrigger>
                                         </TabsList>
                                     </div>
                                 </CardHeader>
@@ -947,4 +947,3 @@ export default function AnalystPage() {
   );
 }
 
-    
