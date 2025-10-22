@@ -18,17 +18,18 @@ export function Toaster() {
   return (
     <ToastProvider>
       {toasts.map(function ({ id, title, description, action, variant, ...props }) {
-        const Icon = variant === 'destructive' ? AlertTriangle : CheckCircle;
-        const iconColor = variant === 'destructive' ? 'text-red-500' : 'text-green-500';
+        const isDestructive = variant === 'destructive';
+        const Icon = isDestructive ? AlertTriangle : CheckCircle;
+        const iconColor = isDestructive ? 'text-destructive' : 'text-green-500';
 
         return (
           <Toast key={id} variant={variant} {...props}>
             <div className="flex items-center justify-between w-full mb-2">
                 <div className="flex items-center gap-2">
                     <Icon className={`w-4 h-4 ${iconColor}`} />
-                    <span className="text-xs font-semibold uppercase text-gray-500">Petakan.ai</span>
+                    <span className="text-xs font-semibold uppercase text-muted-foreground">Petakan.ai</span>
                 </div>
-                <span className="text-xs text-gray-500">now</span>
+                <span className="text-xs text-muted-foreground">now</span>
             </div>
             <div className="w-full pl-0">
               {title && <ToastTitle>{title}</ToastTitle>}

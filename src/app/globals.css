@@ -80,24 +80,24 @@
 
 @layer components {
   [data-radix-toast-root] {
-    background-color: #EFEFEFD9; /* Light grey with opacity */
-    border-color: transparent;
+    background-color: hsl(var(--card));
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: hsl(var(--border));
   }
   
   [data-radix-toast-root][data-variant="destructive"] {
-     border-color: transparent;
-     color: hsl(var(--foreground));
-  }
-  
-  .dark [data-radix-toast-root] {
-    background-color: #333333D9; /* Dark grey with opacity */
+     border-color: hsl(var(--destructive) / 0.5);
+     color: hsl(var(--destructive));
   }
 
+  .dark [data-radix-toast-root][data-variant="destructive"] {
+    border-color: hsl(var(--destructive));
+  }
+  
   .dark [data-radix-toast-root] .text-black {
     color: white;
   }
-
+  
   .dark [data-radix-toast-root] .text-gray-500 {
     color: #A0A0A0;
   }
