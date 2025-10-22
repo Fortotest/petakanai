@@ -33,7 +33,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center max-w-7xl">
-        <div className="mr-4 flex">
+        <div className="mr-8 flex">
           <Link className="flex items-center gap-x-1.5" href="/">
             <Image 
               src="https://raw.githubusercontent.com/tesweb2025/Market-Intelligence-5.1/ee3935807a4b4acf1e4ed22754edc5e764e916ab/petakanai%20icon.png"
@@ -46,7 +46,22 @@ export function Header() {
           </Link>
         </div>
         
-        <div className="flex flex-1 items-center justify-end space-x-2">
+        <nav className="hidden md:flex flex-1 items-center gap-6 text-sm">
+            {navLinks.map(link => (
+                <Link 
+                    href={getLinkHref(link)} 
+                    key={link.href}
+                    className={cn(
+                        "font-medium transition-colors hover:text-primary", 
+                        pathname === link.href ? "text-primary" : "text-muted-foreground"
+                    )}
+                >
+                    {link.label}
+                </Link>
+            ))}
+        </nav>
+
+        <div className="flex flex-1 items-center justify-end md:hidden">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
