@@ -358,9 +358,13 @@ export default function AnalystPage() {
 
     setIsLoading(true);
     setAnalysisResult(null);
+    
     setTimeout(() => {
-        document.getElementById('hasil-simulasi')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
+        const resultsEl = document.getElementById('hasil-simulasi');
+        if (resultsEl) {
+            resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, 200);
 
     try {
       const result = await runAnalysis(data);
