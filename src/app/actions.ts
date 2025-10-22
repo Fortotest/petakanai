@@ -2,8 +2,8 @@
 "use server";
 
 import { z } from "zod";
-import { analyzeMarketEntry } from "@/ai/flows/analyze-market-entry";
-import { generateStrategicRecommendations } from "@/ai/flows/generate-strategic-recommendations";
+// import { analyzeMarketEntry } from "@/ai/flows/analyze-market-entry";
+// import { generateStrategicRecommendations } from "@/ai/flows/generate-strategic-recommendations";
 import type { AnalyzeMarketEntryOutput, StrategicRecommendationsOutput } from "@/ai/flows/types";
 
 const formSchema = z.object({
@@ -205,12 +205,26 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     { item: 'Arus Kas Bersih', value: annualNetCashFlow, isNegative: annualNetCashFlow < 0 },
   ];
   
-  const financialForecastSummary = `Proyeksi omzet tahunan: Rp ${annualRevenue.toLocaleString('id-ID')}. Proyeksi untung tahunan: Rp ${annualProfit.toLocaleString('id-ID')}. ROAS: ${roas.toFixed(2)}x. BEP: ${isFinite(bepUnit) ? `${Math.ceil(bepUnit)} unit/bulan` : 'Tidak tercapai'}.`;
+  // const financialForecastSummary = `Proyeksi omzet tahunan: Rp ${annualRevenue.toLocaleString('id-ID')}. Proyeksi untung tahunan: Rp ${annualProfit.toLocaleString('id-ID')}. ROAS: ${roas.toFixed(2)}x. BEP: ${isFinite(bepUnit) ? `${Math.ceil(bepUnit)} unit/bulan` : 'Tidak tercapai'}.`;
   
-  const marketConditionSummary = "Pasar e-commerce Indonesia sangat kompetitif, didominasi oleh Shopee dan TikTok Shop. Konsumen sensitif harga dan suka promo. Pertumbuhan didorong oleh adopsi digital di kota-kota lapis kedua dan ketiga.";
+  // const marketConditionSummary = "Pasar e-commerce Indonesia sangat kompetitif, didominasi oleh Shopee dan TikTok Shop. Konsumen sensitif harga dan suka promo. Pertumbuhan didorong oleh adopsi digital di kota-kota lapis kedua dan ketiga.";
   
-  const warningsSummary = warnings.length > 0 ? warnings.join('. ') : 'Tidak ada.';
+  // const warningsSummary = warnings.length > 0 ? warnings.join('. ') : 'Tidak ada.';
   
+  // AI features are temporarily disabled to allow for deployment without API keys.
+  const marketAnalysis: AnalyzeMarketEntryOutput = {
+      evaluation: "Analisis AI dinonaktifkan",
+      keyConsiderations: "Fitur analisis dan rekomendasi AI sedang tidak aktif. Semua kalkulasi finansial tetap berjalan normal."
+  };
+  const strategicPlan: StrategicRecommendationsOutput = {
+      recommendations: [
+          "Rekomendasi AI tidak tersedia saat ini."
+      ]
+  };
+  const aiError = true; // Set to true to display the "AI is disabled" message on the frontend
+
+  /* 
+  // Original AI logic - uncomment and provide API keys to re-enable
   let marketAnalysis: AnalyzeMarketEntryOutput;
   let strategicPlan: StrategicRecommendationsOutput;
   let aiError = false;
@@ -252,6 +266,7 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
         ]
     };
   }
+  */
 
   return {
     annualRevenue,
