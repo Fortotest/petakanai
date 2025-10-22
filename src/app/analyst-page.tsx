@@ -369,18 +369,13 @@ export default function AnalystPage() {
           toast({
               variant: "destructive",
               title: "Analisis AI Gagal",
-              description: "Waduh, AI lagi pusing. Proyeksi finansial di bawah ini tetap akurat.",
+              description: "Waduh, AI lagi pusing. Coba lagi beberapa saat, ya. Proyeksi finansial di bawah ini tetap akurat.",
           });
           playNotificationSound();
       }
     } catch (error: any) {
       console.error("Analysis failed:", error);
-      toast({
-        variant: "destructive",
-        title: "Analisis Gagal Total",
-        description: "Waduh, server kami sedang bermasalah. Coba lagi beberapa saat, ya.",
-      });
-      playNotificationSound();
+      setAnalysisResult(error as AnalysisResult)
     } finally {
       setIsLoading(false);
     }
@@ -789,28 +784,28 @@ export default function AnalystPage() {
                         <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-0">
                             <div>
                                <p className="text-body font-semibold">Proyeksi Pendapatan Tahunan</p>
-                               <p className="text-2xl md:text-3xl mt-2 font-bold text-primary break-words">{formatCurrency(analysisResult.annualRevenue)}</p>
+                               <p className="text-2xl md:text-3xl mt-2 font-bold text-primary break-all">{formatCurrency(analysisResult.annualRevenue)}</p>
                             </div>
                             <p className="text-caption text-muted-foreground mt-2">Total omzet kotor sebelum dikurangi biaya.</p>
                         </Card>
                         <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-0">
                              <div>
                                 <p className="text-body font-semibold">Proyeksi Profit Tahunan</p>
-                                <p className={`text-2xl md:text-3xl mt-2 font-bold break-words ${analysisResult.annualProfit < 0 ? 'text-destructive' : 'text-green-600'}`}>{formatCurrency(analysisResult.annualProfit)}</p>
+                                <p className={`text-2xl md:text-3xl mt-2 font-bold break-all ${analysisResult.annualProfit < 0 ? 'text-destructive' : 'text-green-600'}`}>{formatCurrency(analysisResult.annualProfit)}</p>
                             </div>
                             <p className="text-caption text-muted-foreground mt-2">Sisa uang setelah semua biaya terbayar.</p>
                         </Card>
                         <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-0">
                             <div>
                                <p className="text-body font-semibold">Return on Ad Spend (ROAS)</p>
-                               <p className="text-2xl md:text-3xl mt-2 font-bold break-words">{`${analysisResult.roas.toFixed(2)}x`}</p>
+                               <p className="text-2xl md:text-3xl mt-2 font-bold break-all">{`${analysisResult.roas.toFixed(2)}x`}</p>
                             </div>
                             <p className="text-caption text-muted-foreground mt-2">Pengembalian dari setiap Rupiah untuk iklan.</p>
                         </Card>
                          <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-0">
                             <div>
                                <p className="text-body font-semibold">BEP (Break-Even Point)</p>
-                               <p className="text-2xl md:text-3xl mt-2 font-bold break-words">
+                               <p className="text-2xl md:text-3xl mt-2 font-bold break-all">
                                 {isFinite(analysisResult.bepUnit) ? `${new Intl.NumberFormat('id-ID').format(Math.ceil(analysisResult.bepUnit))} unit` : 'N/A'}
                                 </p>
                             </div>
@@ -870,8 +865,8 @@ export default function AnalystPage() {
                             {isAiAnalysisFailed ? (
                                 <Alert variant="destructive">
                                     <AlertTriangle className="h-4 w-4" />
-                                    <AlertTitle>{analysisResult.marketAnalysis.evaluation}</AlertTitle>
-                                    <AlertDescription>{analysisResult.marketAnalysis.keyConsiderations}</AlertDescription>
+                                    <AlertTitle>Analisis AI Gagal</AlertTitle>
+                                    <AlertDescription>Waduh, AI lagi pusing. Proyeksi finansial di bawah ini tetap akurat.</AlertDescription>
                                 </Alert>
                             ) : (
                                 analysisResult.marketAnalysis.evaluation.includes("berisiko") || analysisResult.annualProfit < 0 ?
