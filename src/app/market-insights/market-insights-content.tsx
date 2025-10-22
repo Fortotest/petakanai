@@ -73,7 +73,7 @@ const platformStrategyDescriptions = [
 export default function MarketInsightsContent() {
     return (
         <>
-            <main className="container mx-auto px-4 py-8 max-w-7xl">
+            <main className="container mx-auto px-4 py-8 max-w-3xl">
                 <div className="space-y-12 md:space-y-20">
                     <section id="wawasan-pasar" className="space-y-8 scroll-mt-24">
                         <div className="text-center">

@@ -423,7 +423,7 @@ export default function AnalystPage() {
   );
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-7xl">
+    <div className="container mx-auto px-4 py-8 max-w-3xl">
       <main className="space-y-12 md:space-y-20">
         <section className="text-center">
             <h1 className="text-3xl md:text-h1 font-bold tracking-tight mb-4">
