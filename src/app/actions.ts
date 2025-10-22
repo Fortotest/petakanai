@@ -144,7 +144,7 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     warnings.push("Iklan kamu belum balik modal (ROAS < 1). Perlu evaluasi konten atau targeting iklan.");
   }
   if (isFinite(bepUnit) && bepUnit > soldUnits) {
-    warnings.push("Target penjualanmu belum bisa menutupi biaya (BEP > Penjualan Aktual). Atur ulang harga, biaya, atau target volume.");
+    warnings.push("Target penjualanmu belum bisa menutupi biaya (BEP > Penjualan Aktual). Atur ulang harga, biaya, atau target volume");
   }
 
   // --- P&L and Cashflow Tables ---
