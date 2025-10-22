@@ -2,6 +2,7 @@
 import { Header } from '@/components/header';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Target, CheckCircle2 } from 'lucide-react';
+import Image from 'next/image';
 
 export default function AboutPage() {
   return (
@@ -11,6 +12,18 @@ export default function AboutPage() {
         <div className="space-y-8">
           <div className="space-y-2 text-center">
             <h1 className="text-h1 font-bold">Petakan.ai</h1>
+          </div>
+          
+          <div className="my-8">
+              <Image 
+                src="https://raw.githubusercontent.com/Fortotest/Market.ai/87fd35bb95da94bd9a80e34a80b08498639b5eb7/202510211340.gif"
+                alt="Petakan.ai demo"
+                width={1200}
+                height={630}
+                className="mx-auto rounded-xl"
+                unoptimized
+                priority
+              />
           </div>
 
           <Card>
