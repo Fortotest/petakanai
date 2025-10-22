@@ -14,7 +14,7 @@ export default function MarketInsightsMaintenancePage() {
                     <div className="space-y-3">
                         <h1 className="text-h2 font-semibold tracking-tight">System Maintenance</h1>
                         <p className="text-body text-muted-foreground max-w-md">
-                            The <span className="font-semibold text-foreground">Market Insights</span> page is currently being updated to provide more accurate and relevant data. Please check back later!
+                            Halaman <span className="font-semibold text-foreground">Wawasan Pasar</span> sedang dalam pembaruan untuk menyajikan data yang lebih akurat dan relevan. Silakan coba kembali nanti!
                         </p>
                     </div>
                 </div>
