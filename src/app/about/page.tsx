@@ -25,14 +25,14 @@ export default function AboutPage() {
           <Card>
             <CardContent className="space-y-4 text-body text-muted-foreground pt-6">
               <p>
-                Saya (RizkyFadil) bikin Petakan.ai karena masalah-masalah teknis yang saya alamin sendiri pas mau mulai jualan. Modal udah ada, tapi di kepala saya isinya cuma pertanyaan:
+                Gua (RizkyFadil) bikin Petakan.ai karena masalah-masalah teknis yang gua alamin sendiri pas mau mulai jualan. Modal udah ada, tapi di kepala gua isinya cuma pertanyaan:
               </p>
               <blockquote className="border-l-2 border-primary pl-4 italic text-foreground/80 space-y-2">
-                <p>"Harga jual saya Rp 100.000, HPP-nya Rp 50.000. Tapi apa itu udah nutup biaya admin marketplace, biaya packaging, sama payment fee? Jangan-jangan untung bersih saya cuma 10 ribu perak."</p>
-                <p>"Saya ada budget iklan 3 juta. Eh, tapi saya baru inget, ada PPN 11% buat iklan yang harus saya bayar di atasnya. Jadi total 'bakar uang' saya bukan 3 juta, tapi 3,33 juta. Gimana cara ngitung balik modalnya kalo biayanya nambah terus?"</p>
+                <p>"Harga jual gua Rp 100.000, HPP-nya Rp 50.000. Tapi apa itu udah nutup biaya admin marketplace, biaya packaging, sama payment fee? Jangan-jangan untung bersih gua cuma 10 ribu perak."</p>
+                <p>"Gua ada budget iklan 3 juta. Eh, tapi gua baru inget, ada PPN 11% buat iklan yang harus gua bayar di atasnya. Jadi total 'bakar uang' gua bukan 3 juta, tapi 3,33 juta. Gimana cara ngitung balik modalnya kalo biayanya nambah terus?"</p>
               </blockquote>
               <p>
-                Saya takut modal kebuang percuma cuma karena salah itung di detail-detail kecil kayak gitu. Keresahan-keresahan itu yang jadi Petakan.ai. Ini bukan alat yang rumit. Ini simulator simpel buat ngasih kamu jawaban pasti atas pertanyaan-pertanyaan tadi, sebelum kamu buang modal sepeser pun.
+                Gua takut modal kebuang percuma cuma karena salah itung di detail-detail kecil kayak gitu. Keresahan-keresahan itu yang jadi Petakan.ai. Ini bukan alat yang rumit. Ini simulator simpel buat ngasih lo jawaban pasti atas pertanyaan-pertanyaan tadi, sebelum lo buang modal sepeser pun.
               </p>
             </CardContent>
           </Card>
