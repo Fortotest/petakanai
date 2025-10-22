@@ -12,9 +12,9 @@ export default function MarketInsightsMaintenancePage() {
                 <div className="flex flex-col items-center justify-center text-center space-y-6 bg-muted/30 p-8 md:p-12 rounded-2xl">
                     <HardHat className="w-16 h-16 text-primary" />
                     <div className="space-y-3">
-                        <h1 className="text-h2 font-semibold tracking-tight">Sistem Dalam Perbaikan</h1>
+                        <h1 className="text-h2 font-semibold tracking-tight">System Under Maintenance</h1>
                         <p className="text-body text-muted-foreground max-w-md">
-                            Halaman <span className="font-semibold text-foreground">Wawasan Pasar</span> sedang kami perbarui untuk menyajikan data yang lebih akurat dan relevan. Mohon kembali lagi nanti, ya!
+                            The <span className="font-semibold text-foreground">Market Insights</span> page is currently being updated to provide more accurate and relevant data. Please check back later!
                         </p>
                     </div>
                 </div>
