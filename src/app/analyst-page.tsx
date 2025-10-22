@@ -450,14 +450,14 @@ export default function AnalystPage() {
               />
             </div>
           <p className="text-body text-muted-foreground max-w-2xl mx-auto">Simulasikan strategi bisnis kamu dalam hitungan detik. Gratis, instan, dan akurat—petakan.ai bantu kamu ambil keputusan sebelum buang waktu & modal.</p>
-           <div className="my-8 mb-12">
+           <div className="my-8">
              <Button asChild size="lg" className="rounded-full h-12 px-8">
                <Link href="#cek-strategi">
                   Mulai Simulasi Gratis
                   <ArrowRight className="ml-2"/>
                </Link>
              </Button>
-             <p className="text-caption text-muted-foreground mt-4">Isi data sesuai kondisi bisnismu untuk hasil simulasi yang akurat.</p>
+             <p className="text-caption text-muted-foreground mt-3">Isi data sesuai kondisi bisnismu untuk hasil simulasi yang akurat.</p>
            </div>
         </section>
 
