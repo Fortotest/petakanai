@@ -829,11 +829,11 @@ export default function AnalystPage() {
                         <Card className="flex-1">
                              <Tabs defaultValue="monthly" className="w-full">
                                 <CardHeader>
-                                    <div className="flex justify-between items-center">
+                                    <div className="space-y-2">
                                         <CardTitle>Laporan Untung Rugi</CardTitle>
-                                        <TabsList className="grid w-full max-w-[200px] grid-cols-2 h-9">
-                                            <TabsTrigger value="monthly" className="h-7 text-xs">Bulanan</TabsTrigger>
-                                            <TabsTrigger value="weekly" className="h-7 text-xs">Mingguan</TabsTrigger>
+                                        <TabsList className="grid w-full max-w-[180px] grid-cols-2 h-8">
+                                            <TabsTrigger value="monthly" className="h-6 text-xs">Bulanan</TabsTrigger>
+                                            <TabsTrigger value="weekly" className="h-6 text-xs">Mingguan</TabsTrigger>
                                         </TabsList>
                                     </div>
                                 </CardHeader>
@@ -850,11 +850,11 @@ export default function AnalystPage() {
                          <Card className="flex-1">
                             <Tabs defaultValue="monthly" className="w-full">
                                 <CardHeader>
-                                    <div className="flex justify-between items-center">
+                                     <div className="space-y-2">
                                         <CardTitle>Simulasi Arus Kas</CardTitle>
-                                        <TabsList className="grid w-full max-w-[200px] grid-cols-2 h-9">
-                                            <TabsTrigger value="monthly" className="h-7 text-xs">Bulanan</TabsTrigger>
-                                            <TabsTrigger value="weekly" className="h-7 text-xs">Mingguan</TabsTrigger>
+                                        <TabsList className="grid w-full max-w-[180px] grid-cols-2 h-8">
+                                            <TabsTrigger value="monthly" className="h-6 text-xs">Bulanan</TabsTrigger>
+                                            <TabsTrigger value="weekly" className="h-6 text-xs">Mingguan</TabsTrigger>
                                         </TabsList>
                                     </div>
                                 </CardHeader>
@@ -947,3 +947,4 @@ export default function AnalystPage() {
   );
 }
 
+    
