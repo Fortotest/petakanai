@@ -79,7 +79,7 @@
 
 @layer components {
   [data-radix-toast-root] {
-    @apply bg-card/80 dark:bg-card/80 border-border shadow-lg;
+    @apply bg-card border-border shadow-lg;
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
   }
