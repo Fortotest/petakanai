@@ -829,9 +829,9 @@ export default function AnalystPage() {
                         <Card className="flex-1">
                              <Tabs defaultValue="monthly" className="w-full">
                                 <CardHeader>
-                                    <div className="flex flex-wrap items-center justify-between gap-2">
+                                    <div className="flex items-center justify-between gap-2">
                                         <CardTitle>Laporan Untung Rugi</CardTitle>
-                                        <TabsList className="grid grid-cols-2 h-8 text-xs p-1">
+                                        <TabsList className="grid grid-cols-2 h-8 p-1 text-xs">
                                             <TabsTrigger value="monthly" className="h-6 px-2 text-xs">Bulanan</TabsTrigger>
                                             <TabsTrigger value="weekly" className="h-6 px-2 text-xs">Mingguan</TabsTrigger>
                                         </TabsList>
@@ -850,9 +850,9 @@ export default function AnalystPage() {
                          <Card className="flex-1">
                             <Tabs defaultValue="monthly" className="w-full">
                                 <CardHeader>
-                                     <div className="flex flex-wrap items-center justify-between gap-2">
+                                     <div className="flex items-center justify-between gap-2">
                                         <CardTitle>Simulasi Arus Kas</CardTitle>
-                                        <TabsList className="grid grid-cols-2 h-8 text-xs p-1">
+                                        <TabsList className="grid grid-cols-2 h-8 p-1 text-xs">
                                             <TabsTrigger value="monthly" className="h-6 px-2 text-xs">Bulanan</TabsTrigger>
                                             <TabsTrigger value="weekly" className="h-6 px-2 text-xs">Mingguan</TabsTrigger>
                                         </TabsList>
@@ -946,5 +946,6 @@ export default function AnalystPage() {
     </div>
   );
 }
+
 
     
