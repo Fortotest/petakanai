@@ -79,10 +79,11 @@
 
 @layer components {
   [data-radix-toast-root] {
-    @apply bg-white/80 dark:bg-zinc-900/80 backdrop-blur-lg border-white/20 dark:border-zinc-800/80 shadow-lg;
+    @apply bg-card shadow-lg border-border;
   }
   
   [data-radix-toast-root][data-variant="destructive"] {
     @apply text-destructive dark:text-red-400;
+    @apply bg-card;
   }
 }
