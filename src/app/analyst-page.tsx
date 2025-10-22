@@ -265,7 +265,10 @@ export default function AnalystPage() {
     const fcm = fixedCostsPerMonth || 0;
 
     const profitPerUnitExcludingMarketing = sp - cogs - (sp * ocp / 100);
-    const bepUnit = profitPerUnitExcludingMarketing > 0 ? (fcm + calculatedMarketingBudget) / profitPerUnitExcludingMarketing : Infinity;
+    const totalFixedCosts = fcm + (calculatedMarketingBudget || 0);
+    const bepUnit = profitPerUnitExcludingMarketing > 0 
+        ? totalFixedCosts / profitPerUnitExcludingMarketing 
+        : Infinity;
     
     return { profitPerUnitExcludingMarketing, bepUnit };
   }, [sellPrice, costOfGoods, otherCostsPercentage, fixedCostsPerMonth, calculatedMarketingBudget]);
@@ -368,7 +371,7 @@ export default function AnalystPage() {
         if (resultsEl) {
             resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-    }, 500);
+    }, 1000);
 
     try {
       const result = await runAnalysis(data);
@@ -612,7 +615,7 @@ export default function AnalystPage() {
                                 <div>
                                     <h3 className="font-semibold text-lg mb-2">Estimasi Profitabilitas</h3>
                                      <div className="flex flex-col sm:flex-row gap-4">
-                                        <Card className="p-4 bg-muted/50 flex flex-col justify-between rounded-xl flex-1">
+                                        <Card className="p-4 bg-muted/50 flex flex-col justify-between rounded-xl flex-1 min-h-[130px]">
                                             <div>
                                                 <p className="text-caption text-muted-foreground">Laba/unit (Non-iklan)</p>
                                                 <p className={cn(
@@ -623,7 +626,7 @@ export default function AnalystPage() {
                                             </div>
                                             <p className="text-xs text-muted-foreground mt-1">Keuntungan bersih setelah semua biaya dari satu produk terjual.</p>
                                         </Card>
-                                        <Card className="p-4 bg-muted/50 flex flex-col justify-between rounded-xl flex-1">
+                                        <Card className="p-4 bg-muted/50 flex flex-col justify-between rounded-xl flex-1 min-h-[130px]">
                                             <div>
                                                 <p className="text-caption text-muted-foreground">BEP (unit)</p>
                                                 <p className={cn(
@@ -685,9 +688,9 @@ export default function AnalystPage() {
                              <div className="mt-8">
                                 <h3 className="font-semibold text-lg mb-4">Strategic Marketing Allocation</h3>
                                 <div className="flex flex-col md:flex-row gap-8 items-center">
-                                    <div className="overflow-x-auto flex justify-center flex-1">
+                                    <div className="overflow-x-auto flex justify-center flex-1 w-full">
                                         {budgetChartData.length > 0 ? (
-                                            <div className="w-full h-64">
+                                            <div className="w-full h-64 min-h-[256px]">
                                                 <ChartContainer config={budgetChartConfig} className="h-full w-full">
                                                     <RechartsBarChart
                                                         data={budgetChartData}
@@ -782,7 +785,7 @@ export default function AnalystPage() {
         
          <div id="hasil-simulasi" className="scroll-mt-24 space-y-8">
             {isLoading && (
-              <div className="flex flex-col items-center justify-center text-center p-8">
+              <div className="flex flex-col items-center justify-center text-center p-8 min-h-[300px]">
                 <Loader2 className="w-12 h-12 animate-spin text-primary" />
                 <p className="mt-4 text-lg font-semibold">Tunggu dulu...</p>
                 <p className="text-muted-foreground text-caption">AI sedang memproses datamu.</p>
