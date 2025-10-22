@@ -105,8 +105,6 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     if (useOtherChannels) effectivenessFactor += 0.3;
   }
 
-  // If there's spend, the base effectiveness is 1 (from the initial factor) + marketing factors. Total divisor is the sum of all possible factors.
-  // The base effect without spend is 60%. With spend, it's a weighted calculation.
   const totalPossibleFactor = 1 + 0.8 + 0.6 + 0.4 + 0.3; // 3.1
   const soldUnits = hasMarketingSpend 
     ? Math.floor(targetUnits * (effectivenessFactor / totalPossibleFactor))
@@ -154,7 +152,6 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
   }
 
   // --- P&L and Cashflow Tables ---
-  // Monthly Tables
   const grossProfit = monthlyRevenue - monthlyCostOfGoods;
   const pnlTable = [
     { item: `Omzet Bulanan (dari ${soldUnits} unit)`, value: monthlyRevenue, isNegative: false },
@@ -176,7 +173,6 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     { item: 'Arus Kas Bersih', value: netCashFlow, isNegative: netCashFlow < 0 },
   ];
 
-  // Weekly Tables
   const weeklyGrossProfit = weeklyRevenue - weeklyCostOfGoods;
   const pnlTableWeekly = [
     { item: `Omzet Mingguan (dari ${weeklySoldUnits} unit)`, value: weeklyRevenue, isNegative: false },
@@ -198,7 +194,6 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     { item: 'Arus Kas Bersih', value: weeklyNetCashFlow, isNegative: weeklyNetCashFlow < 0 },
   ];
   
-  // --- AI Flow Inputs ---
   const financialForecastSummary = `Proyeksi omzet tahunan: Rp ${annualRevenue.toLocaleString('id-ID')}. Proyeksi untung tahunan: Rp ${annualProfit.toLocaleString('id-ID')}. ROAS: ${roas.toFixed(2)}x. BEP: ${isFinite(bepUnit) ? `${Math.ceil(bepUnit)} unit/bulan` : 'Tidak tercapai'}.`;
   
   const marketConditionSummary = "Pasar e-commerce Indonesia sangat kompetitif, didominasi oleh Shopee dan TikTok Shop. Konsumen sensitif harga dan suka promo. Pertumbuhan didorong oleh adopsi digital di kota-kota lapis kedua dan ketiga.";
@@ -265,3 +260,4 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     aiError,
   };
 }
+

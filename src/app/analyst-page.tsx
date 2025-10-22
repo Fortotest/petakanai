@@ -355,13 +355,12 @@ export default function AnalystPage() {
     setIsLoading(true);
     setAnalysisResult(null);
     
-    // Scroll to results after a short delay to allow state to update
     setTimeout(() => {
         const resultsEl = document.getElementById('hasil-simulasi');
         if (resultsEl) {
             resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-    }, 2000);
+    }, 2500);
 
 
     try {
@@ -450,8 +449,8 @@ export default function AnalystPage() {
                 priority
               />
             </div>
-          <p className="text-body text-muted-foreground max-w-2xl mx-auto">Simulasikan strategi bisnis kamu dalam hitungan detik. Gratis, instan, dan akurat—petakan.ai bantu kamu ambil keputusan sebelum buang waktu & modal.</p>
-           <div className="mt-6 mb-2">
+          <p className="text-body text-muted-foreground max-w-2xl mx-auto">Simulasikan strategi bisnis kamu dalam hitungan detik. Gratis, instan, dan akurat—petakan.ai bantu kamu ambil keputusan sebelum buang waktu &amp; modal.</p>
+           <div className="mt-6">
              <Button asChild size="lg" className="rounded-full h-12 px-8">
                <Link href="#cek-strategi">
                   Mulai Simulasi Gratis
@@ -459,7 +458,7 @@ export default function AnalystPage() {
                </Link>
              </Button>
            </div>
-            <p className="text-caption text-muted-foreground text-center mb-8">
+           <p className="text-caption text-muted-foreground text-center mt-4 mb-8">
               Isi data sesuai kondisi bisnismu untuk
               <br />
               hasil simulasi yang akurat.
@@ -947,3 +946,4 @@ export default function AnalystPage() {
     </div>
   );
 }
+
