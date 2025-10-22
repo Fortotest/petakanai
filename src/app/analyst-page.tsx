@@ -875,7 +875,7 @@ export default function AnalystPage() {
                             <CardTitle>Status Strategi Bisnismu</CardTitle>
                         </CardHeader>
                         <CardContent className="p-0 mt-4 space-y-4">
-                            {analysisResult.marketAnalysis.evaluation.includes("berisiko") || analysisResult.annualProfit < 0 || isAiAnalysisFailed ?
+                            {isAiAnalysisFailed || analysisResult.marketAnalysis.evaluation.includes("berisiko") || analysisResult.annualProfit < 0 ?
                                 (<Alert variant="destructive">
                                     <AlertTriangle className="h-4 w-4" />
                                     <AlertTitle>{analysisResult.marketAnalysis.evaluation}</AlertTitle>
@@ -933,7 +933,7 @@ export default function AnalystPage() {
         </div>
       </main>
       <footer className="text-center text-sm text-muted-foreground mt-20 py-8 border-t">
-        <p>Laporan ini disusun berdasarkan analisis dan proyeksi dari data publik. Gunakan petakan.ai sebagai alat bantu strategis.</p>
+        <p>Gunakan petakan.ai sebagai alat bantu strategis.</p>
         <p className="mt-2">© 2025 Dibuat oleh <Link href="https://www.instagram.com/masffadil/" target="_blank" rel="noopener noreferrer" className="font-semibold text-primary hover:underline">RizkyFadil</Link>.</p>
       </footer>
     </div>
