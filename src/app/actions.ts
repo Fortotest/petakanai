@@ -213,15 +213,15 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
   
   // AI features are temporarily disabled to allow for deployment without API keys.
   const marketAnalysis: AnalyzeMarketEntryOutput = {
-      evaluation: "Analisis AI dinonaktifkan",
-      keyConsiderations: "Fitur analisis dan rekomendasi AI sedang tidak aktif. Semua kalkulasi finansial tetap berjalan normal."
+      evaluation: "Analisis AI Dinonaktifkan",
+      keyConsiderations: "Fitur analisis dan rekomendasi AI sedang tidak aktif untuk sementara waktu. Semua kalkulasi finansial tetap berjalan normal."
   };
   const strategicPlan: StrategicRecommendationsOutput = {
       recommendations: [
           "Rekomendasi AI tidak tersedia saat ini."
       ]
   };
-  const aiError = true; // Set to true to display the "AI is disabled" message on the frontend
+  const aiError = false; // Set to false to prevent the error toast from showing
 
   /* 
   // Original AI logic - uncomment and provide API keys to re-enable
