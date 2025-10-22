@@ -380,7 +380,7 @@ export default function AnalystPage() {
           toast({
               variant: "destructive",
               title: "Analisis AI Gagal",
-              description: "Analisis tidak dapat diproses. Coba lagi atau periksa kembali data Anda.",
+              description: "Analisis tidak dapat diproses. Coba lagi atau periksa kembali data yang Anda masukkan.",
           });
           playNotificationSound();
       }
@@ -389,7 +389,7 @@ export default function AnalystPage() {
       toast({
         variant: "destructive",
         title: "Terjadi Error",
-        description: error.message || "Gagal menjalankan analisis. Silakan coba lagi.",
+        description: "An error occurred in the Server Components render. Please check the server logs for more details.",
       });
       playNotificationSound();
       setAnalysisResult(null);
@@ -460,16 +460,17 @@ export default function AnalystPage() {
               />
             </div>
           <p className="text-body text-muted-foreground max-w-2xl mx-auto">Simulasikan strategi bisnis kamu dalam hitungan detik. Gratis, instan, dan akurat—petakan.ai bantu kamu ambil keputusan sebelum buang waktu & modal.</p>
-           <div className="mt-8 mb-12 text-center">
+           <div className="mt-8 text-center">
              <Button asChild size="lg" className="rounded-full h-12 px-8">
                <Link href="#cek-strategi">
                   Mulai Simulasi Gratis
                   <ArrowRight className="ml-2"/>
                </Link>
              </Button>
-             <p className="text-caption text-muted-foreground mt-3">Isi data sesuai kondisi bisnismu untuk hasil simulasi yang akurat.</p>
            </div>
         </section>
+        
+        <p className="text-caption text-muted-foreground text-center mt-6 mb-8">Isi data sesuai kondisi bisnismu untuk hasil simulasi yang akurat.</p>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-12">
@@ -801,28 +802,28 @@ export default function AnalystPage() {
                     </div>
 
                     <div className="flex flex-col gap-6 mt-8">
-                        <Card className="p-6 text-center flex flex-col justify-between">
+                        <Card className="p-6 text-center flex flex-col justify-between min-h-[130px]">
                             <div>
                                <p className="text-body font-semibold">Proyeksi Pendapatan Tahunan</p>
                                <p className="text-2xl md:text-3xl mt-2 font-bold text-primary break-all">{formatCurrency(analysisResult.annualRevenue)}</p>
                             </div>
                             <p className="text-caption text-muted-foreground mt-2">Total omzet kotor sebelum dikurangi biaya.</p>
                         </Card>
-                        <Card className="p-6 text-center flex flex-col justify-between">
+                        <Card className="p-6 text-center flex flex-col justify-between min-h-[130px]">
                              <div>
                                 <p className="text-body font-semibold">Proyeksi Profit Tahunan</p>
                                 <p className={`text-2xl md:text-3xl mt-2 font-bold break-all ${analysisResult.annualProfit < 0 ? 'text-destructive' : 'text-green-600'}`}>{formatCurrency(analysisResult.annualProfit)}</p>
                             </div>
                             <p className="text-caption text-muted-foreground mt-2">Sisa uang setelah semua biaya terbayar.</p>
                         </Card>
-                        <Card className="p-6 text-center flex flex-col justify-between">
+                        <Card className="p-6 text-center flex flex-col justify-between min-h-[130px]">
                             <div>
                                <p className="text-body font-semibold">Return on Ad Spend (ROAS)</p>
                                <p className="text-2xl md:text-3xl mt-2 font-bold break-all">{`${analysisResult.roas.toFixed(2)}x`}</p>
                             </div>
                             <p className="text-caption text-muted-foreground mt-2">Pengembalian dari setiap Rupiah untuk iklan.</p>
                         </Card>
-                         <Card className="p-6 text-center flex flex-col justify-between">
+                         <Card className="p-6 text-center flex flex-col justify-between min-h-[130px]">
                             <div>
                                <p className="text-body font-semibold">BEP (Break-Even Point)</p>
                                <p className="text-2xl md:text-3xl mt-2 font-bold break-all">
@@ -953,5 +954,3 @@ export default function AnalystPage() {
     </div>
   );
 }
-
-    
