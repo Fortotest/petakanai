@@ -45,22 +45,34 @@ export default function AboutPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6 pt-2 space-y-3">
-              <ul className="space-y-3 text-body">
+              <ul className="space-y-4 text-body">
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1"/>
-                  <span><strong className="text-foreground">Validasi Harga Jual Lo</strong> (Biar tau untung bersih real setelah HPP, biaya admin, packaging, dll.)</span>
+                  <span>
+                    <strong className="block text-foreground">Validasi Harga Jual Lo</strong>
+                    <span className="text-muted-foreground">Biar tau untung bersih real setelah HPP, biaya admin, packaging, dll.</span>
+                  </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1"/>
-                  <span><strong className="text-foreground">Hitung Budget Iklan (Termasuk Pajak!)</strong> (Biar tau budget 3 juta + PPN 11% itu harus jadi berapa penjualan biar gak rugi.)</span>
+                  <span>
+                    <strong className="block text-foreground">Hitung Budget Iklan (Termasuk Pajak!)</strong>
+                    <span className="text-muted-foreground">Biar tau budget 3 juta + PPN 11% itu harus jadi berapa penjualan biar gak rugi.</span>
+                  </span>
                 </li>
                  <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1"/>
-                  <span><strong className="text-foreground">Temukan BEP (Balik Modal) Lo</strong> (Biar tau harus jual berapa unit buat nutupin semua biaya lo.)</span>
+                  <span>
+                    <strong className="block text-foreground">Temukan BEP (Balik Modal) Lo</strong>
+                    <span className="text-muted-foreground">Biar tau harus jual berapa unit buat nutupin semua biaya lo.</span>
+                  </span>
                 </li>
                  <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1"/>
-                  <span><strong className="text-foreground">Dapat Wawasan & Rekomendasi AI</strong> (Berdasarkan data lo, AI kasih insight pasar Indo & strategi yang bisa langsung lo pratekin.)</span>
+                  <span>
+                    <strong className="block text-foreground">Dapat Wawasan & Rekomendasi AI</strong>
+                    <span className="text-muted-foreground">Berdasarkan data lo, AI kasih insight pasar Indo & strategi yang bisa langsung lo pratekin.</span>
+                  </span>
                 </li>
               </ul>
             </CardContent>
