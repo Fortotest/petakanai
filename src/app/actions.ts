@@ -229,7 +229,7 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     aiError = true;
     marketAnalysis = {
         evaluation: "Analisis AI Gagal",
-        keyConsiderations: "Waduh, AI lagi pusing. Coba lagi beberapa saat, ya. Proyeksi finansial di bawah ini tetap akurat."
+        keyConsiderations: "Waduh, AI lagi pusing. Coba lagi beberapa saat, ya."
     };
     strategicPlan = {
         recommendations: ["Rekomendasi strategis tidak tersedia karena analisis AI gagal."]
