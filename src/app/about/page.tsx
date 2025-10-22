@@ -9,9 +9,9 @@ export default function AboutPage() {
   return (
     <>
       <Header />
-      <main className="container mx-auto max-w-3xl px-4 pt-12 pb-6">
-        <div className="space-y-8">
-          <div className="my-8">
+      <main className="container mx-auto max-w-3xl px-4 pt-8 pb-6">
+        <div className="space-y-6">
+          <div className="my-6">
               <Image 
                 src="https://raw.githubusercontent.com/Fortotest/Market.ai/87fd35bb95da94bd9a80e34a80b08498639b5eb7/202510211340.gif"
                 alt="Petakan.ai demo"
