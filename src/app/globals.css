@@ -81,27 +81,23 @@
 @layer components {
   /* iOS-style Toast Notification */
   [data-radix-toast-root] {
-    @apply rounded-2xl p-3 shadow-lg border-none;
-    background-color: #EFEFEF;
+    @apply rounded-2xl p-3 shadow-lg;
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
   }
 
   [data-radix-toast-root][data-variant="destructive"] {
-    background-color: #EFEFEF;
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--destructive) / 0.5);
   }
 
   .dark [data-radix-toast-root] {
-    background-color: #333333;
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
   }
-
+  
   .dark [data-radix-toast-root][data-variant="destructive"] {
-    background-color: #333333;
-  }
-  
-  .dark [data-radix-toast-root] .text-black {
-    color: white;
-  }
-  
-  .dark [data-radix-toast-root] .text-gray-500 {
-    color: #A0A0A0;
+    background-color: hsl(var(--card));
+     border: 1px solid hsl(var(--destructive) / 0.5);
   }
 }

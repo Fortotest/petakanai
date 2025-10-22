@@ -20,6 +20,7 @@ export function Toaster() {
         const isDestructive = variant === 'destructive';
         const Icon = isDestructive ? AlertTriangle : CheckCircle;
         const iconColor = isDestructive ? 'text-destructive' : 'text-green-500';
+        const titleColor = isDestructive ? 'text-destructive' : 'text-foreground';
 
         return (
           <Toast key={id} variant={variant} {...props} className="p-3">
@@ -27,16 +28,16 @@ export function Toaster() {
             <div className="flex items-center justify-between w-full mb-1">
                 <div className="flex items-center gap-2">
                     <Icon className={`w-4 h-4 ${iconColor}`} />
-                    <span className="text-xs font-semibold uppercase text-gray-500">Petakan.ai</span>
+                    <span className="text-xs font-semibold uppercase text-muted-foreground">Petakan.ai</span>
                 </div>
-                <span className="text-xs text-gray-500">now</span>
+                <span className="text-xs text-muted-foreground">now</span>
             </div>
             
             {/* Body */}
             <div className="w-full pl-0">
-              {title && <ToastTitle className="font-bold text-black">{title}</ToastTitle>}
+              {title && <ToastTitle className={`font-bold ${titleColor}`}>{title}</ToastTitle>}
               {description && (
-                <ToastDescription className="text-black">{description}</ToastDescription>
+                <ToastDescription className="text-foreground/90">{description}</ToastDescription>
               )}
             </div>
             {action}
