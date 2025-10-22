@@ -431,7 +431,7 @@ export default function AnalystPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-3xl">
-       <audio ref={audioRef} src="https://raw.githubusercontent.com/Fortotest/Market.ai/87fd35bb95da94bd9a80e34a80b08498639b5eb7/Notif%20iphone%20ting%20whatsapp.mp3" preload="auto"></audio>
+       <audio ref={audioRef} src="https://raw.githubusercontent.com/Fortotest/Market.ai/87fd35bb95da94bd9a80e34a80b08498639b5eb7/Notif%20iphone%20ting%20whatsapp.mp3?raw=true" preload="auto"></audio>
       <main className="space-y-12 md:space-y-20">
         <section className="text-center">
             <h1 className="text-3xl md:text-h1 font-bold tracking-tight mb-4">
@@ -867,7 +867,13 @@ export default function AnalystPage() {
                             <CardTitle>Status Strategi Bisnismu</CardTitle>
                         </CardHeader>
                         <CardContent className="p-0 mt-4 space-y-4">
-                            {!isAiAnalysisFailed && (
+                            {isAiAnalysisFailed ? (
+                                <Alert variant="destructive">
+                                    <AlertTriangle className="h-4 w-4" />
+                                    <AlertTitle>{analysisResult.marketAnalysis.evaluation}</AlertTitle>
+                                    <AlertDescription>{analysisResult.marketAnalysis.keyConsiderations}</AlertDescription>
+                                </Alert>
+                            ) : (
                                 analysisResult.marketAnalysis.evaluation.includes("berisiko") || analysisResult.annualProfit < 0 ?
                                 (<Alert variant="destructive">
                                     <AlertTriangle className="h-4 w-4" />
@@ -924,5 +930,3 @@ export default function AnalystPage() {
     </div>
   );
 }
-
-    
