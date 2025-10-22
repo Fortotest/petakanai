@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
@@ -786,29 +787,29 @@ export default function AnalystPage() {
                         <p className="text-subtitle text-muted-foreground mt-2">Proyeksi kesehatan bisnismu berdasarkan data yang kamu isi.</p>
                     </div>
 
-                    <div className="flex flex-row flex-wrap gap-6 mt-8">
-                        <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-0">
+                    <div className="flex flex-col gap-6 mt-8">
+                        <Card className="p-6 text-center flex flex-col justify-between">
                             <div>
                                <p className="text-body font-semibold">Proyeksi Pendapatan Tahunan</p>
                                <p className="text-2xl md:text-3xl mt-2 font-bold text-primary break-all">{formatCurrency(analysisResult.annualRevenue)}</p>
                             </div>
                             <p className="text-caption text-muted-foreground mt-2">Total omzet kotor sebelum dikurangi biaya.</p>
                         </Card>
-                        <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-0">
+                        <Card className="p-6 text-center flex flex-col justify-between">
                              <div>
                                 <p className="text-body font-semibold">Proyeksi Profit Tahunan</p>
                                 <p className={`text-2xl md:text-3xl mt-2 font-bold break-all ${analysisResult.annualProfit < 0 ? 'text-destructive' : 'text-green-600'}`}>{formatCurrency(analysisResult.annualProfit)}</p>
                             </div>
                             <p className="text-caption text-muted-foreground mt-2">Sisa uang setelah semua biaya terbayar.</p>
                         </Card>
-                        <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-0">
+                        <Card className="p-6 text-center flex flex-col justify-between">
                             <div>
                                <p className="text-body font-semibold">Return on Ad Spend (ROAS)</p>
                                <p className="text-2xl md:text-3xl mt-2 font-bold break-all">{`${analysisResult.roas.toFixed(2)}x`}</p>
                             </div>
                             <p className="text-caption text-muted-foreground mt-2">Pengembalian dari setiap Rupiah untuk iklan.</p>
                         </Card>
-                         <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-0">
+                         <Card className="p-6 text-center flex flex-col justify-between">
                             <div>
                                <p className="text-body font-semibold">BEP (Break-Even Point)</p>
                                <p className="text-2xl md:text-3xl mt-2 font-bold break-all">
@@ -931,5 +932,3 @@ export default function AnalystPage() {
     </div>
   );
 }
-
-    
