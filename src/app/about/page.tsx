@@ -24,7 +24,7 @@ export default function AboutPage() {
           </div>
 
           <Card>
-            <CardContent className="space-y-4 text-body text-muted-foreground pt-6">
+            <CardContent className="space-y-4 text-body text-muted-foreground pt-6 text-right">
               <p>
                 Gua <Link href="https://www.instagram.com/masffadil/" target="_blank" rel="noopener noreferrer" className="font-semibold text-primary hover:underline">RizkyFadil</Link> bikin Petakan.ai karena masalah-masalah teknis yang gua alamin sendiri pas mau mulai jualan. Modal udah ada, tapi di kepala gua isinya cuma pertanyaan:
               </p>
