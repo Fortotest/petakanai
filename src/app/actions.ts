@@ -194,16 +194,28 @@ export async function runAnalysis(data: FormData): Promise<{
   const marketConditionSummary = "Pasar e-commerce Indonesia sangat kompetitif, didominasi oleh Shopee dan TikTok Shop. Konsumen sensitif harga dan suka promo. Pertumbuhan didorong oleh adopsi digital di kota-kota lapis kedua dan ketiga.";
   
   const warningsSummary = warnings.length > 0 ? warnings.join('. ') : 'Tidak ada.';
+  
+  let marketAnalysis: AnalyzeMarketEntryOutput;
+  let strategicPlan: StrategicRecommendationsOutput;
 
-  const [marketAnalysis, strategicPlan] = await Promise.all([
-    analyzeMarketEntry({
+  try {
+    marketAnalysis = await analyzeMarketEntry({
         productName: validatedData.productName,
         targetSegment: validatedData.targetSegment,
         calculatedMarketingBudget,
         financialForecastSummary,
         marketConditionSummary
-    }),
-    generateStrategicRecommendations({
+    });
+  } catch (error) {
+    console.error("AI Market Analysis Failed:", error);
+    marketAnalysis = {
+        evaluation: "Analisis AI Gagal",
+        keyConsiderations: "Gagal mendapatkan analisis pasar dari AI. Proyeksi finansial tetap ditampilkan."
+    };
+  }
+
+  try {
+    strategicPlan = await generateStrategicRecommendations({
         productName: validatedData.productName,
         targetSegmentation: validatedData.targetSegment,
         calculatedMarketingBudget,
@@ -213,8 +225,14 @@ export async function runAnalysis(data: FormData): Promise<{
         monthlyProfitAndLossStatement: JSON.stringify(pnlTable.map(p => `${p.item}: Rp ${p.value.toLocaleString('id-ID')}`)),
         monthlyCashFlowSimulation: JSON.stringify(cashflowTable.map(c => `${c.item}: Rp ${c.value.toLocaleString('id-ID')}`)),
         warningsSummary,
-    })
-  ]);
+    });
+  } catch (error) {
+    console.error("AI Strategic Plan Generation Failed:", error);
+    strategicPlan = {
+        recommendations: ["Rekomendasi strategis tidak tersedia karena analisis AI gagal."]
+    };
+  }
+
 
   return {
     annualRevenue,

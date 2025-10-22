@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -238,6 +238,7 @@ export default function AnalystPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const { toast } = useToast();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -331,6 +332,12 @@ export default function AnalystPage() {
       }));
   }, [budgetAllocations, useVideoContent, useKOL, usePromo, useOtherChannels]);
 
+  const playNotificationSound = () => {
+    if (audioRef.current) {
+        audioRef.current.play().catch(error => console.error("Audio play failed:", error));
+    }
+  };
+
   const onSubmit = async (data: FormData) => {
     const activeStrategies = Object.values(marketingStrategies).filter(s => data[s.id]);
     if (activeStrategies.length === 0) {
@@ -339,6 +346,7 @@ export default function AnalystPage() {
         title: "Validasi Gagal",
         description: "Pilih minimal satu strategi pemasaran untuk menjalankan simulasi.",
       });
+      playNotificationSound();
       return;
     }
     
@@ -348,6 +356,7 @@ export default function AnalystPage() {
         title: "Validasi Gagal",
         description: "Modal Produk (HPP) harus lebih rendah dari Harga Jual.",
       });
+      playNotificationSound();
       return;
     }
     
@@ -359,6 +368,7 @@ export default function AnalystPage() {
             title: "Peringatan Logika",
             description: "Strategi pemasaran aktif tapi budget nol. Hasil simulasi mungkin tidak akurat.",
         });
+        playNotificationSound();
     }
 
     setIsLoading(true);
@@ -374,9 +384,10 @@ export default function AnalystPage() {
       console.error("Analysis failed:", error);
       toast({
         variant: "destructive",
-        title: "Analisis Gagal",
-        description: "Waduh, AI-nya lagi pusing. Coba lagi beberapa saat, ya.",
+        title: "Analisis Gagal Total",
+        description: "Waduh, server kami sedang bermasalah. Coba lagi beberapa saat, ya.",
       });
+      playNotificationSound();
     } finally {
       setIsLoading(false);
     }
@@ -422,8 +433,12 @@ export default function AnalystPage() {
     </Table>
   );
 
+  const isAiAnalysisFailed = analysisResult?.marketAnalysis?.evaluation === "Analisis AI Gagal";
+
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-3xl">
+       <audio ref={audioRef} src="/notification.mp3" preload="auto"></audio>
       <main className="space-y-12 md:space-y-20">
         <section className="text-center">
             <h1 className="text-3xl md:text-h1 font-bold tracking-tight mb-4">
@@ -859,7 +874,13 @@ export default function AnalystPage() {
                             <CardTitle>Status Strategi Bisnismu</CardTitle>
                         </CardHeader>
                         <CardContent className="p-0 mt-4 space-y-4">
-                            {analysisResult.marketAnalysis.evaluation.includes("berisiko") || analysisResult.annualProfit < 0 ?
+                            {isAiAnalysisFailed ?
+                                (<Alert variant="destructive">
+                                    <AlertTriangle className="h-4 w-4" />
+                                    <AlertTitle>{analysisResult.marketAnalysis.evaluation}</AlertTitle>
+                                    <AlertDescription>{analysisResult.marketAnalysis.keyConsiderations}</AlertDescription>
+                                </Alert>) :
+                                analysisResult.marketAnalysis.evaluation.includes("berisiko") || analysisResult.annualProfit < 0 ?
                                 (<Alert variant="destructive">
                                     <AlertTriangle className="h-4 w-4" />
                                     <AlertTitle>{analysisResult.marketAnalysis.evaluation}</AlertTitle>
