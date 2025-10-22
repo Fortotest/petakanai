@@ -431,7 +431,7 @@ export default function AnalystPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-3xl">
-       <audio ref={audioRef} src="/notification.mp3" preload="auto"></audio>
+       <audio ref={audioRef} src="https://raw.githubusercontent.com/Fortotest/Market.ai/87fd35bb95da94bd9a80e34a80b08498639b5eb7/Notif%20iphone%20ting%20whatsapp.mp3" preload="auto"></audio>
       <main className="space-y-12 md:space-y-20">
         <section className="text-center">
             <h1 className="text-3xl md:text-h1 font-bold tracking-tight mb-4">
@@ -924,3 +924,5 @@ export default function AnalystPage() {
     </div>
   );
 }
+
+    
