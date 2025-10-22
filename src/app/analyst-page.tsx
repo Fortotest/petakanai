@@ -925,7 +925,7 @@ export default function AnalystPage() {
                      ) : (
                       <ul className="list-decimal list-outside space-y-3 pl-5 text-body">
                         {analysisResult.strategicPlan.recommendations.map((rec: string, index: number) => (
-                          <li key={index} className="pl-2">{rec}</li>
+                          <li key={index} className="pl-2}>{rec}</li>
                         ))}
                       </ul>
                      )}
@@ -943,7 +943,3 @@ export default function AnalystPage() {
     </div>
   );
 }
-
-    
-
-    
