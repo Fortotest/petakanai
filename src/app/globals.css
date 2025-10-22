@@ -79,25 +79,15 @@
 }
 
 @layer components {
-  /* iOS-style Toast Notification */
+  /* iOS-style Toast Notification - Solid White/Dark, with Border & Shadow */
   [data-radix-toast-root] {
     @apply rounded-2xl p-3 shadow-lg;
-    background-color: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
+    background-color: hsl(var(--card)); /* Solid white/dark background */
+    border: 1px solid hsl(var(--border)); /* Clear border */
   }
 
   [data-radix-toast-root][data-variant="destructive"] {
-    background-color: hsl(var(--card));
     border: 1px solid hsl(var(--destructive) / 0.5);
-  }
-
-  .dark [data-radix-toast-root] {
-    background-color: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
-  }
-  
-  .dark [data-radix-toast-root][data-variant="destructive"] {
-    background-color: hsl(var(--card));
-     border: 1px solid hsl(var(--destructive) / 0.5);
+    /* Destructive variant only affects border color, not background */
   }
 }

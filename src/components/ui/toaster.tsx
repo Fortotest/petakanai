@@ -20,7 +20,7 @@ export function Toaster() {
         const isDestructive = variant === 'destructive';
         const Icon = isDestructive ? AlertTriangle : CheckCircle;
         const iconColor = isDestructive ? 'text-destructive' : 'text-green-500';
-        const titleColor = isDestructive ? 'text-destructive' : 'text-foreground';
+        const titleColor = isDestructive ? 'text-destructive font-bold' : 'text-foreground font-semibold';
 
         return (
           <Toast key={id} variant={variant} {...props} className="p-3">
@@ -35,7 +35,7 @@ export function Toaster() {
             
             {/* Body */}
             <div className="w-full pl-0">
-              {title && <ToastTitle className={`font-bold ${titleColor}`}>{title}</ToastTitle>}
+              {title && <ToastTitle className={titleColor}>{title}</ToastTitle>}
               {description && (
                 <ToastDescription className="text-foreground/90">{description}</ToastDescription>
               )}
