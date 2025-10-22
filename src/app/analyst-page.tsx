@@ -912,14 +912,22 @@ export default function AnalystPage() {
                   <Card className="p-6 md:p-8">
                     <CardHeader className="p-0">
                       <CardTitle className="text-h3 font-medium">Rute Strategi dari Petakan.ai</CardTitle>
-                      <CardDescription>Rekomendasi dari AI yang bisa langsung Anda terapkan.</CardDescription>
+                      <CardDescription>Rekomendasi dari AI yang bisa langsung kamu terapkan untuk bisnismu.</CardDescription>
                     </CardHeader>
                     <CardContent className="p-0 mt-6">
+                     {isAiAnalysisFailed ? (
+                        <ul className="list-decimal list-outside space-y-3 pl-5 text-body text-muted-foreground">
+                            <li className="pl-2">Waduh, AI lagi butuh istirahat sejenak.</li>
+                            <li className="pl-2">Coba periksa kembali data yang kamu masukkan, mungkin ada angka yang kurang pas.</li>
+                            <li className="pl-2">Jika data sudah benar, silakan coba lagi dalam beberapa saat.</li>
+                        </ul>
+                     ) : (
                       <ul className="list-decimal list-outside space-y-3 pl-5 text-body">
                         {analysisResult.strategicPlan.recommendations.map((rec: string, index: number) => (
                           <li key={index} className="pl-2">{rec}</li>
                         ))}
                       </ul>
+                     )}
                     </CardContent>
                   </Card>
                 </section>

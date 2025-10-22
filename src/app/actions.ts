@@ -232,7 +232,7 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
         keyConsiderations: "Waduh, AI lagi pusing. Coba lagi beberapa saat, ya."
     };
     strategicPlan = {
-        recommendations: ["Rekomendasi strategis tidak tersedia karena analisis AI gagal."]
+        recommendations: []
     };
   }
 
