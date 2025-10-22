@@ -833,7 +833,7 @@ export default function AnalystPage() {
                                         <CardTitle>Laporan<br/>Untung Rugi</CardTitle>
                                         <TabsList className="grid grid-cols-2 h-8 p-1 text-xs">
                                             <TabsTrigger value="monthly" className="h-6 px-2 text-xs">Bulanan</TabsTrigger>
-                                            <TabsTrigger value="annual" className="h-6 px-2 text-xs">Tahunan</TabsTrigger>
+                                            <TabsTrigger value="annual" className="h-6 px-2 text-xs">Mingguan</TabsTrigger>
                                         </TabsList>
                                     </div>
                                 </CardHeader>
@@ -939,3 +939,5 @@ export default function AnalystPage() {
     </div>
   );
 }
+
+    
