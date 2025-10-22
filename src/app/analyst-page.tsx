@@ -457,6 +457,7 @@ export default function AnalystPage() {
                   <ArrowRight className="ml-2"/>
                </Link>
              </Button>
+             <p className="text-caption text-muted-foreground mt-4">Isi data sesuai kondisi riil bisnismu untuk hasil simulasi yang akurat.</p>
            </div>
         </section>
 
