@@ -434,7 +434,7 @@ export default function AnalystPage() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-3xl">
        <audio ref={audioRef} src="https://raw.githubusercontent.com/Fortotest/Market.ai/87fd35bb95da94bd9a80e34a80b08498639b5eb7/Notif%20iphone%20ting%20whatsapp.mp3?raw=true" preload="auto"></audio>
-      <main className="space-y-12 md:space-y-20">
+      <main className="space-y-12 md:space-y-12">
         <section className="text-center">
             <h1 className="text-3xl md:text-h1 font-bold tracking-tight mb-4">
               Lihat Untung-Ruginya, Sebelum Kamu Jalanin Strateginya.
@@ -450,14 +450,14 @@ export default function AnalystPage() {
               />
             </div>
           <p className="text-body text-muted-foreground max-w-2xl mx-auto">Simulasikan strategi bisnis kamu dalam hitungan detik. Gratis, instan, dan akurat—petakan.ai bantu kamu ambil keputusan sebelum buang waktu & modal.</p>
-           <div className="my-8">
+           <div className="my-8 mb-12">
              <Button asChild size="lg" className="rounded-full h-12 px-8">
                <Link href="#cek-strategi">
                   Mulai Simulasi Gratis
                   <ArrowRight className="ml-2"/>
                </Link>
              </Button>
-             <p className="text-caption text-muted-foreground mt-4">Isi data sesuai kondisi riil bisnismu untuk hasil simulasi yang akurat.</p>
+             <p className="text-caption text-muted-foreground mt-4">Isi data sesuai kondisi bisnismu untuk hasil simulasi yang akurat.</p>
            </div>
         </section>
 
@@ -943,5 +943,7 @@ export default function AnalystPage() {
     </div>
   );
 }
+
+    
 
     
