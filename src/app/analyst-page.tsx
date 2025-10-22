@@ -458,7 +458,7 @@ export default function AnalystPage() {
                </Link>
              </Button>
            </div>
-           <p className="text-caption text-muted-foreground text-center">
+            <p className="text-caption text-muted-foreground text-center">
               Isi data sesuai kondisi bisnismu untuk
               <br />
               hasil simulasi yang akurat.
@@ -947,3 +947,4 @@ export default function AnalystPage() {
   );
 }
 
+    
