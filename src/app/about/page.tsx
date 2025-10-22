@@ -33,7 +33,7 @@ export default function AboutPage() {
                 <p>"Gua ada budget iklan 3 juta. Eh, tapi gua baru inget, ada PPN 11% buat iklan yang harus gua bayar di atasnya. Jadi total 'bakar uang' gua bukan 3 juta, tapi 3,33 juta. Gimana cara ngitung balik modalnya kalo biayanya nambah terus?"</p>
               </blockquote>
               <p>
-                Gua takut modal kebuang percuma cuma karena salah itung di detail-detail kecil kayak gitu. Keresahan-keresahan itu yang jadi Petakan.ai. Ini bukan alat yang rumit. Ini simulator simpel buat ngasih lo jawaban pasti atas pertanyaan-pertanyaan tadi, sebelum lo buang modal sepeser pun.
+                Gua takut modal kebuang percuma cuma karena salah itung di detail-detail kecil kayak gitu. Keresahan-keresahan itu yang jadi Petakan.ai. Ini bukan alat yang rumit. Ini simulator simpel buat ngasih jawaban pasti atas pertanyaan-pertanyaan tadi, sebelum kamu buang modal sepeser pun.
               </p>
             </CardContent>
           </Card>
@@ -41,7 +41,7 @@ export default function AboutPage() {
           <Card>
             <CardHeader className="p-6 pb-2">
               <CardTitle className="text-h3 flex items-center gap-2">
-                Di Petakan.ai, lo bisa langsung:
+                Di Petakan.ai, kamu bisa langsung:
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6 pt-2 space-y-3">
@@ -49,7 +49,7 @@ export default function AboutPage() {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1"/>
                   <span>
-                    <strong className="block text-foreground">Validasi Harga Jual Lo</strong>
+                    <strong className="block text-foreground">Validasi Harga Jual</strong>
                     <span className="text-muted-foreground">Biar tau untung bersih real setelah HPP, biaya admin, packaging, dll.</span>
                   </span>
                 </li>
@@ -63,15 +63,15 @@ export default function AboutPage() {
                  <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1"/>
                   <span>
-                    <strong className="block text-foreground">Temukan BEP (Balik Modal) Lo</strong>
-                    <span className="text-muted-foreground">Biar tau harus jual berapa unit buat nutupin semua biaya lo.</span>
+                    <strong className="block text-foreground">Temukan BEP (Balik Modal)</strong>
+                    <span className="text-muted-foreground">Biar tau harus jual berapa unit buat nutupin semua biaya kamu.</span>
                   </span>
                 </li>
                  <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1"/>
                   <span>
                     <strong className="block text-foreground">Dapat Wawasan & Rekomendasi AI</strong>
-                    <span className="text-muted-foreground">Berdasarkan data lo, AI kasih insight pasar Indo & strategi yang bisa langsung lo pratekin.</span>
+                    <span className="text-muted-foreground">Berdasarkan data kamu, AI kasih insight pasar Indo & strategi yang bisa langsung kamu pratekin.</span>
                   </span>
                 </li>
               </ul>
