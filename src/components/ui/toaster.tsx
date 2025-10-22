@@ -27,7 +27,7 @@ export function Toaster() {
               <div className="flex items-center justify-between w-full">
                   <div className="flex items-center gap-2">
                       <Icon className={`w-5 h-5 ${isDestructive ? 'text-destructive' : 'text-green-500'}`} />
-                      <span className="text-xs font-semibold uppercase text-muted-foreground">Petakan.ai</span>
+                      <span className="text-xs font-bold uppercase text-foreground">Petakan</span>
                   </div>
                   <span className="text-xs text-muted-foreground">now</span>
               </div>
