@@ -825,7 +825,7 @@ export default function AnalystPage() {
                             </div>
                             <p className="text-caption text-muted-foreground mt-2">Target penjualan bulanan untuk balik modal.</p>                        </Card>
                     </div>
-                <div className="flex flex-col md:flex-row gap-8 mt-8">
+                    <div className="flex flex-col md:flex-row gap-8 mt-8">
                         <Card className="flex-1">
                              <Tabs defaultValue="monthly" className="w-full">
                                 <CardHeader>
@@ -833,7 +833,7 @@ export default function AnalystPage() {
                                         <CardTitle>Laporan<br/>Untung Rugi</CardTitle>
                                         <TabsList className="grid grid-cols-2 h-8 p-1 text-xs">
                                             <TabsTrigger value="monthly" className="h-6 px-2 text-xs">Bulanan</TabsTrigger>
-                                            <TabsTrigger value="annual" className="h-6 px-2 text-xs">Mingguan</TabsTrigger>
+                                            <TabsTrigger value="weekly" className="h-6 px-2 text-xs">Mingguan</TabsTrigger>
                                         </TabsList>
                                     </div>
                                 </CardHeader>
@@ -841,8 +841,8 @@ export default function AnalystPage() {
                                     <TabsContent value="monthly">
                                         {renderTable(analysisResult.pnlTable, true)}
                                     </TabsContent>
-                                    <TabsContent value="annual">
-                                        {renderTable(analysisResult.pnlTableAnnual, true)}
+                                    <TabsContent value="weekly">
+                                        {renderTable(analysisResult.pnlTableWeekly, true)}
                                     </TabsContent>
                                 </CardContent>
                             </Tabs>
@@ -939,5 +939,3 @@ export default function AnalystPage() {
     </div>
   );
 }
-
-    
