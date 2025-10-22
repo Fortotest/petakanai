@@ -921,11 +921,14 @@ export default function AnalystPage() {
                             <li className="pl-2">Waduh, AI lagi butuh istirahat sejenak.</li>
                             <li className="pl-2">Coba periksa kembali data yang kamu masukkan, mungkin ada angka yang kurang pas.</li>
                             <li className="pl-2">Jika data sudah benar, silakan coba lagi dalam beberapa saat.</li>
+                            <li className="pl-2">
+                            Pastikan Anda sudah memilih minimal satu strategi pemasaran pada bagian "Data Bisnismu".
+                            </li>
                         </ul>
                      ) : (
                       <ul className="list-decimal list-outside space-y-3 pl-5 text-body">
                         {analysisResult.strategicPlan.recommendations.map((rec: string, index: number) => (
-                          <li key={index} className="pl-2}>{rec}</li>
+                          <li key={index} className="pl-2">{rec}</li>
                         ))}
                       </ul>
                      )}
@@ -943,3 +946,5 @@ export default function AnalystPage() {
     </div>
   );
 }
+
+    
