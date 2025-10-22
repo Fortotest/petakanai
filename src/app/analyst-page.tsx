@@ -937,7 +937,7 @@ export default function AnalystPage() {
       </main>
       <footer className="text-center text-sm text-muted-foreground mt-20 py-8 border-t">
         <p>Laporan ini disusun berdasarkan analisis dan proyeksi dari data publik. Gunakan petakan.ai sebagai alat bantu strategis.</p>
-        <p className="mt-2">© 2025 Dibuat oleh RizkyFadil.</p>
+        <p className="mt-2">© 2025 Dibuat oleh <Link href="https://www.instagram.com/masffadil/" target="_blank" rel="noopener noreferrer" className="font-semibold text-primary hover:underline">RizkyFadil</Link>.</p>
       </footer>
     </div>
   );

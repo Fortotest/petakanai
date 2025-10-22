@@ -8,6 +8,7 @@ import { Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ComposedC
 import { Separator } from '@/components/ui/separator';
 import { BarChart as RechartsBarChart } from 'recharts';
 import { Clock, Percent, Zap, Sparkles } from 'lucide-react';
+import Link from 'next/link';
 
 const marketShareData = [
     { name: 'Tokopedia & TikTok', value: 39 },
@@ -189,7 +190,7 @@ export default function MarketInsightsContent() {
             </main>
             <footer className="text-center text-sm text-muted-foreground mt-20 py-8 border-t">
                 <p>Laporan ini disusun berdasarkan analisis dan proyeksi dari data publik. Gunakan petakan.ai sebagai alat bantu strategis.</p>
-                <p className="mt-2">© 2025 Dibuat oleh RizkyFadil.</p>
+                <p className="mt-2">© 2025 Dibuat oleh <Link href="https://www.instagram.com/masffadil/" target="_blank" rel="noopener noreferrer" className="font-semibold text-primary hover:underline">RizkyFadil</Link>.</p>
             </footer>
         </>
     );
