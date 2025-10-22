@@ -18,7 +18,7 @@ import {
 const analyzeMarketEntryPrompt = ai.definePrompt({
   name: 'analyzeMarketEntryPrompt',
   input: { schema: AnalyzeMarketEntryInputSchema },
-  model: 'googleai/gemini-pro',
+  model: 'gemini-pro',
   prompt: `Kamu adalah seorang Business Analyst AI yang ahli di pasar e-commerce Indonesia. Gaya bicaramu santai, to the point, dan mudah dimengerti UMKM.
 
 Tugasmu adalah memberikan evaluasi cepat dan tajam terhadap sebuah ide bisnis berdasarkan data berikut:
@@ -52,7 +52,7 @@ const analyzeMarketEntryFlow = ai.defineFlow(
   },
   async (input) => {
     const response = await analyzeMarketEntryPrompt(input);
-    const textOutput = response.text();
+    const textOutput = response.text;
     try {
       const parsedOutput = JSON.parse(textOutput);
       return AnalyzeMarketEntryOutputSchema.parse(parsedOutput);

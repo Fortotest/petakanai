@@ -19,7 +19,7 @@ import {
 const generateStrategicRecommendationsPrompt = ai.definePrompt({
   name: 'generateStrategicRecommendationsPrompt',
   input: { schema: StrategicRecommendationsInputSchema },
-  model: 'googleai/gemini-pro',
+  model: 'gemini-pro',
   prompt: `Kamu adalah seorang Business Strategist AI yang jago banget ngasih saran praktis buat UMKM di Indonesia. Gaya bicaramu santai, memotivasi, dan solutif.
 
 Tugasmu adalah memberikan 3-5 Rencana Aksi Prioritas berdasarkan data simulasi bisnis ini.
@@ -61,7 +61,7 @@ const generateStrategicRecommendationsFlow = ai.defineFlow(
   },
   async (input) => {
     const response = await generateStrategicRecommendationsPrompt(input);
-    const textOutput = response.text();
+    const textOutput = response.text;
     try {
       const parsedOutput = JSON.parse(textOutput);
       return StrategicRecommendationsOutputSchema.parse(parsedOutput);
