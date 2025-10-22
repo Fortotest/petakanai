@@ -54,10 +54,15 @@ const analyzeMarketEntryFlow = ai.defineFlow(
     const response = await analyzeMarketEntryPrompt(input);
     const textOutput = response.text;
     try {
-      const parsedOutput = JSON.parse(textOutput);
+      // Attempt to find a valid JSON object within the text output
+      const jsonMatch = textOutput.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) {
+        throw new Error("No valid JSON object found in the AI's response.");
+      }
+      const parsedOutput = JSON.parse(jsonMatch[0]);
       return AnalyzeMarketEntryOutputSchema.parse(parsedOutput);
     } catch (e) {
-      console.error("Failed to parse AI output:", textOutput);
+      console.error("Failed to parse AI output:", textOutput, e);
       throw new Error("AI returned malformed analysis data.");
     }
   }

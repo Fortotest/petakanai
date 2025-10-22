@@ -63,10 +63,15 @@ const generateStrategicRecommendationsFlow = ai.defineFlow(
     const response = await generateStrategicRecommendationsPrompt(input);
     const textOutput = response.text;
     try {
-      const parsedOutput = JSON.parse(textOutput);
+      // Attempt to find a valid JSON object within the text output
+      const jsonMatch = textOutput.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) {
+        throw new Error("No valid JSON object found in the AI's response.");
+      }
+      const parsedOutput = JSON.parse(jsonMatch[0]);
       return StrategicRecommendationsOutputSchema.parse(parsedOutput);
     } catch (e) {
-      console.error("Failed to parse AI output:", textOutput);
+      console.error("Failed to parse AI output:", textOutput, e);
       throw new Error("AI returned malformed recommendations data.");
     }
   }
