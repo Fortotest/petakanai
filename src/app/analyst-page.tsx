@@ -457,12 +457,15 @@ export default function AnalystPage() {
                   <ArrowRight className="ml-2"/>
                </Link>
              </Button>
-            <p className="text-caption text-muted-foreground text-center mt-4">Isi data sesuai kondisi bisnismu untuk hasil simulasi yang akurat.</p>
+            <p className="text-caption text-muted-foreground text-center mt-4">
+              Isi data sesuai kondisi bisnismu untuk<br />
+              hasil simulasi yang akurat.
+            </p>
            </div>
         </section>
         
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-12">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <section id="cek-strategi" className="scroll-mt-24">
               <Card className="p-6 md:p-8">
                 <CardHeader className="p-0">
@@ -942,5 +945,3 @@ export default function AnalystPage() {
     </div>
   );
 }
-
-    
