@@ -30,6 +30,7 @@ const formSchema = z.object({
     if (!marketingStrategiesSelected) {
         return true; 
     }
+    // If a strategy is selected, one of the cost modes must have a value > 0
     if (data.costMode === 'budget') {
         return data.totalMarketingBudget > 0;
     }
@@ -233,13 +234,14 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     console.error("AI Analysis Failed:", error);
     aiError = true;
     marketAnalysis = {
-        evaluation: "Analisis AI Gagal",
-        keyConsiderations: "Analisis tidak dapat diproses. Coba lagi atau periksa kembali data yang Anda masukkan."
+        evaluation: "Waduh, AI-nya lagi pusing nih!",
+        keyConsiderations: "Coba refresh atau perbaiki datamu. Kalau masih error, mungkin server-nya lelah. Kasih jeda beberapa saat, ya!"
     };
     strategicPlan = {
         recommendations: [
-          "Rekomendasi tidak dapat dimuat karena terjadi kesalahan analisis.",
+          "Rekomendasi tidak dapat dimuat karena analisis AI gagal.",
           "Pastikan semua data bisnis dan biaya telah diisi dengan benar.",
+          "Coba muat ulang halaman dan jalankan simulasi sekali lagi.",
           "Jika masalah berlanjut, silakan coba lagi dalam beberapa saat."
         ]
     };
@@ -263,5 +265,3 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     aiError,
   };
 }
-
-    

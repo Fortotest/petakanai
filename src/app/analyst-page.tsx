@@ -355,12 +355,14 @@ export default function AnalystPage() {
     setIsLoading(true);
     setAnalysisResult(null);
     
+    // Scroll to results after a short delay to allow state to update
     setTimeout(() => {
         const resultsEl = document.getElementById('hasil-simulasi');
         if (resultsEl) {
             resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-    }, 1500);
+    }, 2000);
+
 
     try {
       const result = await runAnalysis(data);
@@ -368,8 +370,8 @@ export default function AnalystPage() {
       if (result.aiError) {
           toast({
               variant: "destructive",
-              title: "Analisis AI Gagal",
-              description: "Analisis tidak dapat diproses. Coba lagi atau periksa kembali data yang Anda masukkan.",
+              title: "Waduh, AI-nya lagi pusing nih!",
+              description: "Coba refresh atau perbaiki datamu. Kalau masih error, mungkin server-nya lelah. Kasih jeda beberapa saat, ya!",
           });
           playNotificationSound();
       }
@@ -449,7 +451,7 @@ export default function AnalystPage() {
               />
             </div>
           <p className="text-body text-muted-foreground max-w-2xl mx-auto">Simulasikan strategi bisnis kamu dalam hitungan detik. Gratis, instan, dan akurat—petakan.ai bantu kamu ambil keputusan sebelum buang waktu & modal.</p>
-           <div className="mt-6 mb-4 text-center">
+           <div className="mt-6">
              <Button asChild size="lg" className="rounded-full h-12 px-8">
                <Link href="#cek-strategi">
                   Mulai Simulasi Gratis
@@ -457,7 +459,7 @@ export default function AnalystPage() {
                </Link>
              </Button>
            </div>
-            <p className="text-caption text-muted-foreground text-center mb-8">
+            <p className="text-caption text-muted-foreground text-center mt-4 mb-8">
               Isi data sesuai kondisi bisnismu untuk<br />
               hasil simulasi yang akurat.
             </p>
@@ -876,8 +878,8 @@ export default function AnalystPage() {
                             {isAiAnalysisFailed ? (
                                 <Alert variant="destructive">
                                     <AlertTriangle className="h-4 w-4" />
-                                    <AlertTitle>Analisis AI Gagal</AlertTitle>
-                                    <AlertDescription>Analisis tidak dapat diproses. Coba lagi atau periksa kembali data yang Anda masukkan.</AlertDescription>
+                                    <AlertTitle>{analysisResult.marketAnalysis.evaluation}</AlertTitle>
+                                    <AlertDescription>{analysisResult.marketAnalysis.keyConsiderations}</AlertDescription>
                                 </Alert>
                             ) : (
                                 analysisResult.marketAnalysis.evaluation.includes("berisiko") || analysisResult.annualProfit < 0 ?
@@ -944,5 +946,3 @@ export default function AnalystPage() {
     </div>
   );
 }
-
-    
