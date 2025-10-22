@@ -362,12 +362,13 @@ export default function AnalystPage() {
     setIsLoading(true);
     setAnalysisResult(null);
     
+    // Scroll to results immediately on desktop, with a slight delay on mobile
     setTimeout(() => {
         const resultsEl = document.getElementById('hasil-simulasi');
         if (resultsEl) {
             resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-    }, 500); // Increased delay
+    }, 500);
 
     try {
       const result = await runAnalysis(data);
@@ -456,7 +457,7 @@ export default function AnalystPage() {
               />
             </div>
           <p className="text-body text-muted-foreground max-w-2xl mx-auto">Simulasikan strategi bisnis kamu dalam hitungan detik. Gratis, instan, dan akurat—petakan.ai bantu kamu ambil keputusan sebelum buang waktu & modal.</p>
-           <div className="my-8">
+           <div className="mt-8 mb-12 text-center">
              <Button asChild size="lg" className="rounded-full h-12 px-8">
                <Link href="#cek-strategi">
                   Mulai Simulasi Gratis

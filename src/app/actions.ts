@@ -104,7 +104,12 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     if (useOtherChannels) effectivenessFactor += 0.3;
   }
 
-  const soldUnits = Math.floor(targetUnits * 0.6 + (targetUnits * 0.4 * effectivenessFactor / 2.1));
+  // If there's spend, the base effectiveness is 1 (from the initial factor) + marketing factors. Total divisor is the sum of all possible factors.
+  // The base effect without spend is 60%. With spend, it's a weighted calculation.
+  const totalPossibleFactor = 1 + 0.8 + 0.6 + 0.4 + 0.3; // 3.1
+  const soldUnits = hasMarketingSpend 
+    ? Math.floor(targetUnits * (effectivenessFactor / totalPossibleFactor))
+    : Math.floor(targetUnits * 0.6);
   
   // --- FINANCIAL CALCULATIONS ---
   // Monthly
