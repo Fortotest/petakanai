@@ -371,7 +371,7 @@ export default function AnalystPage() {
           toast({
               variant: "destructive",
               title: "Waduh, AI-nya lagi pusing nih!",
-              description: "Coba refresh atau perbaiki datamu. Kalau masih error, mungkin server-nya lelah. Kasih jeda beberapa saat, ya!",
+              description: "Coba refresh atau perbaiki datamu. Kalau masih error, kasih jeda beberapa saat, ya!",
           });
           playNotificationSound();
       }
@@ -451,7 +451,7 @@ export default function AnalystPage() {
               />
             </div>
           <p className="text-body text-muted-foreground max-w-2xl mx-auto">Simulasikan strategi bisnis kamu dalam hitungan detik. Gratis, instan, dan akurat—petakan.ai bantu kamu ambil keputusan sebelum buang waktu & modal.</p>
-           <div className="mt-6">
+           <div className="mt-6 mb-2">
              <Button asChild size="lg" className="rounded-full h-12 px-8">
                <Link href="#cek-strategi">
                   Mulai Simulasi Gratis
@@ -459,8 +459,9 @@ export default function AnalystPage() {
                </Link>
              </Button>
            </div>
-            <p className="text-caption text-muted-foreground text-center mt-4 mb-8">
-              Isi data sesuai kondisi bisnismu untuk<br />
+            <p className="text-caption text-muted-foreground text-center mb-8">
+              Isi data sesuai kondisi bisnismu untuk
+              <br />
               hasil simulasi yang akurat.
             </p>
         </section>

@@ -235,7 +235,7 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     aiError = true;
     marketAnalysis = {
         evaluation: "Waduh, AI-nya lagi pusing nih!",
-        keyConsiderations: "Coba refresh atau perbaiki datamu. Kalau masih error, mungkin server-nya lelah. Kasih jeda beberapa saat, ya!"
+        keyConsiderations: "Coba refresh atau perbaiki datamu. Kalau masih error, kasih jeda beberapa saat, ya!"
     };
     strategicPlan = {
         recommendations: [
