@@ -355,7 +355,6 @@ export default function AnalystPage() {
     setIsLoading(true);
     setAnalysisResult(null);
     
-    // Scroll to results immediately on desktop, with a slight delay on mobile
     setTimeout(() => {
         const resultsEl = document.getElementById('hasil-simulasi');
         if (resultsEl) {
@@ -379,7 +378,7 @@ export default function AnalystPage() {
       toast({
         variant: "destructive",
         title: "Terjadi Error",
-        description: "An error occurred in the Server Components render. Please check the server logs for more details.",
+        description: "Terjadi kesalahan saat memproses permintaan Anda. Silakan periksa kembali data atau coba lagi nanti.",
       });
       playNotificationSound();
       setAnalysisResult(null);
@@ -450,18 +449,18 @@ export default function AnalystPage() {
               />
             </div>
           <p className="text-body text-muted-foreground max-w-2xl mx-auto">Simulasikan strategi bisnis kamu dalam hitungan detik. Gratis, instan, dan akurat—petakan.ai bantu kamu ambil keputusan sebelum buang waktu & modal.</p>
-           <div className="mt-6 text-center">
+           <div className="mt-6 mb-4 text-center">
              <Button asChild size="lg" className="rounded-full h-12 px-8">
                <Link href="#cek-strategi">
                   Mulai Simulasi Gratis
                   <ArrowRight className="ml-2"/>
                </Link>
              </Button>
-            <p className="text-caption text-muted-foreground text-center mt-4">
+           </div>
+            <p className="text-caption text-muted-foreground text-center mb-8">
               Isi data sesuai kondisi bisnismu untuk<br />
               hasil simulasi yang akurat.
             </p>
-           </div>
         </section>
         
         <Form {...form}>
@@ -945,3 +944,5 @@ export default function AnalystPage() {
     </div>
   );
 }
+
+    
