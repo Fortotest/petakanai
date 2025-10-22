@@ -371,7 +371,7 @@ export default function AnalystPage() {
         if (resultsEl) {
             resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-    }, 1000);
+    }, 1500);
 
     try {
       const result = await runAnalysis(data);
@@ -830,8 +830,7 @@ export default function AnalystPage() {
                                 {isFinite(analysisResult.bepUnit) ? `${new Intl.NumberFormat('id-ID').format(Math.ceil(analysisResult.bepUnit))} unit` : 'N/A'}
                                 </p>
                             </div>
-                            <p className="text-caption text-muted-foreground mt-2">Target penjualan bulanan untuk balik modal.</p>
-                        </Card>
+                            <p className="text-caption text-muted-foreground mt-2">Target penjualan bulanan untuk balik modal.</p>                        </Card>
                     </div>
                 <div className="flex flex-col md:flex-row gap-8 mt-8">
                         <Card className="flex-1">
@@ -954,3 +953,5 @@ export default function AnalystPage() {
     </div>
   );
 }
+
+    
