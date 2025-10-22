@@ -830,7 +830,7 @@ export default function AnalystPage() {
                              <Tabs defaultValue="monthly" className="w-full">
                                 <CardHeader>
                                     <div className="flex items-center justify-between gap-2">
-                                        <CardTitle>Laporan Untung Rugi</CardTitle>
+                                        <CardTitle>Laporan<span className="hidden md:inline"><br /></span> Untung Rugi</CardTitle>
                                         <TabsList className="grid grid-cols-2 h-8 p-1 text-xs">
                                             <TabsTrigger value="monthly" className="h-6 px-2 text-xs">Bulanan</TabsTrigger>
                                             <TabsTrigger value="weekly" className="h-6 px-2 text-xs">Mingguan</TabsTrigger>
@@ -851,7 +851,7 @@ export default function AnalystPage() {
                             <Tabs defaultValue="monthly" className="w-full">
                                 <CardHeader>
                                      <div className="flex items-center justify-between gap-2">
-                                        <CardTitle>Simulasi Arus Kas</CardTitle>
+                                        <CardTitle>Simulasi<span className="hidden md:inline"><br /></span> Arus Kas</CardTitle>
                                         <TabsList className="grid grid-cols-2 h-8 p-1 text-xs">
                                             <TabsTrigger value="monthly" className="h-6 px-2 text-xs">Bulanan</TabsTrigger>
                                             <TabsTrigger value="weekly" className="h-6 px-2 text-xs">Mingguan</TabsTrigger>
