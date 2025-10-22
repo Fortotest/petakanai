@@ -376,7 +376,7 @@ export default function AnalystPage() {
           toast({
               variant: "destructive",
               title: "Analisis AI Gagal",
-              description: "Waduh, AI lagi pusing. Coba lagi beberapa saat, ya.",
+              description: "Analisis tidak dapat diproses. Coba lagi atau periksa kembali data Anda.",
           });
           playNotificationSound();
       }
@@ -882,7 +882,7 @@ export default function AnalystPage() {
                                 <Alert variant="destructive">
                                     <AlertTriangle className="h-4 w-4" />
                                     <AlertTitle>Analisis AI Gagal</AlertTitle>
-                                    <AlertDescription>Waduh, AI lagi pusing. Coba lagi beberapa saat, ya.</AlertDescription>
+                                    <AlertDescription>Analisis tidak dapat diproses. Coba lagi atau periksa kembali data yang Anda masukkan.</AlertDescription>
                                 </Alert>
                             ) : (
                                 analysisResult.marketAnalysis.evaluation.includes("berisiko") || analysisResult.annualProfit < 0 ?
@@ -924,12 +924,9 @@ export default function AnalystPage() {
                     <CardContent className="p-0 mt-6">
                      {isAiAnalysisFailed ? (
                         <ul className="list-decimal list-outside space-y-3 pl-5 text-body text-muted-foreground">
-                            <li className="pl-2">Waduh, AI lagi butuh istirahat sejenak.</li>
-                            <li className="pl-2">Coba periksa kembali data yang kamu masukkan, mungkin ada angka yang kurang pas.</li>
-                            <li className="pl-2">Jika data sudah benar, silakan coba lagi dalam beberapa saat.</li>
-                            <li className="pl-2">
-                            Pastikan Anda sudah memilih minimal satu strategi pemasaran pada bagian "Data Bisnismu".
-                            </li>
+                            {analysisResult.strategicPlan.recommendations.map((rec: string, index: number) => (
+                              <li key={index} className="pl-2">{rec}</li>
+                            ))}
                         </ul>
                      ) : (
                       <ul className="list-decimal list-outside space-y-3 pl-5 text-body">

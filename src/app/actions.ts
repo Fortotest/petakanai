@@ -229,10 +229,14 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     aiError = true;
     marketAnalysis = {
         evaluation: "Analisis AI Gagal",
-        keyConsiderations: "Waduh, AI lagi pusing. Coba lagi beberapa saat, ya."
+        keyConsiderations: "Analisis tidak dapat diproses. Coba lagi atau periksa kembali data yang Anda masukkan."
     };
     strategicPlan = {
-        recommendations: ["Gagal memuat rekomendasi. Coba periksa kembali data yang kamu masukkan atau coba lagi nanti."]
+        recommendations: [
+          "Rekomendasi tidak dapat dimuat karena terjadi kesalahan analisis.",
+          "Pastikan semua data bisnis dan biaya telah diisi dengan benar.",
+          "Jika masalah berlanjut, silakan coba lagi dalam beberapa saat."
+        ]
     };
   }
 
