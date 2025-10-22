@@ -8,16 +8,28 @@ import Link from 'next/link';
 import { useState } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
 
 const navLinks = [
-    { href: '/#wawasan-pasar', label: 'Wawasan Pasar' },
-    { href: '/#pangsa-pasar', label: 'Pangsa Pasar' },
-    { href: '/#cek-strategi', label: 'Simulasi' },
+    { href: '/market-insights', label: 'Wawasan Pasar' },
+    { href: '/', label: 'Simulasi' },
     { href: '/about', label: 'About' },
 ];
 
 export function Header() {
     const [isOpen, setIsOpen] = useState(false);
+    const pathname = usePathname();
+
+    const getLinkHref = (link: { href: string, label: string }) => {
+        if (link.label === 'Wawasan Pasar') {
+            return '/market-insights';
+        }
+        if (link.label === 'Simulasi') {
+            return '/#cek-strategi';
+        }
+        return link.href;
+    }
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center max-w-7xl">
@@ -60,7 +72,7 @@ export function Header() {
                 <nav className="flex flex-col gap-4 mt-8">
                     {navLinks.map(link => (
                         <SheetClose asChild key={link.href}>
-                            <Link href={link.href} className="text-lg font-medium transition-colors hover:text-primary">{link.label}</Link>
+                            <Link href={getLinkHref(link)} className={cn("text-lg font-medium transition-colors hover:text-primary", { 'text-primary': pathname === link.href } )}>{link.label}</Link>
                         </SheetClose>
                     ))}
                 </nav>
