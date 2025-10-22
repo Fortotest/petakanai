@@ -464,16 +464,16 @@ export default function AnalystPage() {
                   </div>
                 </CardHeader>
                 <CardContent className="p-0 mt-6 space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="flex flex-col md:flex-row gap-4">
                     <FormField control={form.control} name="productName" render={({ field }) => (
-                      <FormItem>
+                      <FormItem className="flex-1">
                           <FormLabel>Nama Produk / Bisnis</FormLabel>
                           <FormControl><Input placeholder="Contoh: Keripik Pedas" {...field} /></FormControl>
                           <FormMessage />
                       </FormItem>
                     )} />
                     <FormField control={form.control} name="targetSegment" render={({ field }) => (
-                      <FormItem>
+                      <FormItem className="flex-1">
                           <FormLabel>Target Pasar Utama</FormLabel>
                           <FormControl><Input placeholder="Contoh: Karyawan kantoran, suka pedas" {...field} /></FormControl>
                           <FormMessage />
@@ -483,14 +483,14 @@ export default function AnalystPage() {
                   
                   <div className="space-y-2 pt-2">
                     <h3 className="font-medium text-sm">Pilih Strategi Pemasaran</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="flex flex-col md:flex-row flex-wrap gap-4">
                         {marketingStrategies.map((strategy) => (
                             <FormField
                                 key={strategy.id}
                                 control={form.control}
                                 name={strategy.id}
                                 render={({ field }) => (
-                                    <FormItem>
+                                    <FormItem className="flex-1 min-w-full md:min-w-[calc(50%-0.5rem)]">
                                         <FormControl>
                                             <div className="relative">
                                                 <Switch
@@ -533,8 +533,8 @@ export default function AnalystPage() {
                         <CardDescription>Pilih model yang paling sesuai, lalu atur harga dan biaya.</CardDescription>
                     </CardHeader>
                     <CardContent className="p-0 mt-6 space-y-8">
-                         <div className="grid md:grid-cols-2 gap-8 items-start">
-                             <div className="space-y-6 flex flex-col justify-center h-full">
+                         <div className="flex flex-col md:flex-row gap-8 items-start">
+                             <div className="space-y-6 flex flex-col justify-center h-full flex-1">
                                 <FormField control={form.control} name="marginModel" render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Model Margin</FormLabel>
@@ -562,7 +562,7 @@ export default function AnalystPage() {
                                     </FormItem>
                                 )} />
                             </div>
-                            <div className="bg-background border p-4 rounded-xl h-full">
+                            <div className="bg-background border p-4 rounded-xl h-full flex-1">
                               <h4 className="font-semibold text-lg text-primary">{selectedBusinessModel.persona}</h4>
                               <p className="mt-1 text-caption">{selectedBusinessModel.analysis}</p>
                               <p className="mt-2 text-caption font-semibold">{selectedBusinessModel.platforms}</p>
@@ -571,29 +571,29 @@ export default function AnalystPage() {
                         
                         <div>
                             <h3 className="font-semibold text-lg mb-4">Kalkulator Harga & Biaya per Produk</h3>
-                            <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-4">
-                                <NumericInput name="sellPrice" control={form.control} label="Harga Jual" />
-                                <NumericInput name="costOfGoods" control={form.control} label="Modal Produk (HPP)" />
-                                <NumericInput 
+                            <div className="flex flex-col md:flex-row flex-wrap gap-4">
+                                <div className="flex-1 min-w-full md:min-w-0"><NumericInput name="sellPrice" control={form.control} label="Harga Jual" /></div>
+                                <div className="flex-1 min-w-full md:min-w-0"><NumericInput name="costOfGoods" control={form.control} label="Modal Produk (HPP)" /></div>
+                                <div className="flex-1 min-w-full md:min-w-0"><NumericInput 
                                   name="otherCostsPercentage" 
                                   control={form.control} 
                                   label="Biaya Lain (%)"
                                   description="Contoh: biaya admin marketplace, packaging, fee transaksi."
-                                />
+                                /></div>
                             </div>
                         </div>
-                        <div className="grid md:grid-cols-2 gap-4">
-                            <div>
+                        <div className="flex flex-col md:flex-row gap-4">
+                            <div className="flex-1">
                                 <h3 className="font-semibold text-lg mb-2">Biaya Tetap & Target Penjualan</h3>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <NumericInput name="fixedCostsPerMonth" control={form.control} label="Biaya Tetap / Bulan" />
-                                    <NumericInput name="avgSalesPerMonth" control={form.control} label="Target Jual / Bulan" />
+                                <div className="flex flex-col sm:flex-row gap-4">
+                                    <div className="flex-1"><NumericInput name="fixedCostsPerMonth" control={form.control} label="Biaya Tetap / Bulan" /></div>
+                                    <div className="flex-1"><NumericInput name="avgSalesPerMonth" control={form.control} label="Target Jual / Bulan" /></div>
                                 </div>
                             </div>
-                            <div>
+                            <div className="flex-1">
                                 <h3 className="font-semibold text-lg mb-2">Estimasi Profitabilitas</h3>
-                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <Card className="p-4 bg-muted/50 flex flex-col justify-between rounded-xl">
+                                 <div className="flex flex-col sm:flex-row gap-4">
+                                    <Card className="p-4 bg-muted/50 flex flex-col justify-between rounded-xl flex-1">
                                         <div>
                                             <p className="text-caption text-muted-foreground">Laba/unit (Non-iklan)</p>
                                             <p className={cn(
@@ -604,7 +604,7 @@ export default function AnalystPage() {
                                         </div>
                                         <p className="text-xs text-muted-foreground mt-1">Keuntungan bersih setelah semua biaya dari satu produk terjual.</p>
                                     </Card>
-                                    <Card className="p-4 bg-muted/50 flex flex-col justify-between rounded-xl">
+                                    <Card className="p-4 bg-muted/50 flex flex-col justify-between rounded-xl flex-1">
                                         <div>
                                             <p className="text-caption text-muted-foreground">BEP (unit)</p>
                                             <p className={cn(
@@ -664,8 +664,8 @@ export default function AnalystPage() {
                         {costMode === 'budget' && (
                              <div className="mt-8">
                                 <h3 className="font-semibold text-lg mb-4">Strategic Marketing Allocation</h3>
-                                <div className="grid md:grid-cols-2 gap-8 items-center">
-                                    <div className="overflow-x-auto flex justify-center">
+                                <div className="flex flex-col md:flex-row gap-8 items-center">
+                                    <div className="overflow-x-auto flex justify-center flex-1">
                                         {budgetChartData.length > 0 ? (
                                             <div className="w-full h-64">
                                                 <ChartContainer config={budgetChartConfig} className="h-full w-full">
@@ -711,7 +711,7 @@ export default function AnalystPage() {
                                         )}
                                     </div>
 
-                                    <div className="space-y-4">
+                                    <div className="space-y-4 flex-1 w-full">
                                         {marketingStrategies.map(strategy => (
                                             <FormField
                                                 key={strategy.id}
@@ -777,29 +777,29 @@ export default function AnalystPage() {
                         <p className="text-subtitle text-muted-foreground mt-2">Proyeksi kesehatan bisnismu berdasarkan data yang kamu isi.</p>
                     </div>
 
-                    <div className="grid md:grid-cols-4 gap-6 mt-8">
-                        <Card className="p-6 text-center flex flex-col justify-between">
+                    <div className="flex flex-col md:flex-row flex-wrap gap-6 mt-8">
+                        <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-[calc(25%-1.125rem)]">
                             <div>
                                <p className="text-body font-semibold">Proyeksi Pendapatan Tahunan</p>
                                <p className="text-2xl md:text-3xl mt-2 font-bold text-primary break-words">{formatCurrency(analysisResult.annualRevenue)}</p>
                             </div>
                             <p className="text-caption text-muted-foreground mt-2">Total omzet kotor sebelum dikurangi biaya.</p>
                         </Card>
-                        <Card className="p-6 text-center flex flex-col justify-between">
+                        <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-[calc(25%-1.125rem)]">
                              <div>
                                 <p className="text-body font-semibold">Proyeksi Profit Tahunan</p>
                                 <p className={`text-2xl md:text-3xl mt-2 font-bold break-words ${analysisResult.annualProfit < 0 ? 'text-destructive' : 'text-green-600'}`}>{formatCurrency(analysisResult.annualProfit)}</p>
                             </div>
                             <p className="text-caption text-muted-foreground mt-2">Sisa uang setelah semua biaya terbayar.</p>
                         </Card>
-                        <Card className="p-6 text-center flex flex-col justify-between">
+                        <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-[calc(25%-1.125rem)]">
                             <div>
                                <p className="text-body font-semibold">Return on Ad Spend (ROAS)</p>
                                <p className="text-2xl md:text-3xl mt-2 font-bold break-words">{`${analysisResult.roas.toFixed(2)}x`}</p>
                             </div>
                             <p className="text-caption text-muted-foreground mt-2">Pengembalian dari setiap Rupiah untuk iklan.</p>
                         </Card>
-                         <Card className="p-6 text-center flex flex-col justify-between">
+                         <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-[calc(25%-1.125rem)]">
                             <div>
                                <p className="text-body font-semibold">BEP (Break-Even Point)</p>
                                <p className="text-2xl md:text-3xl mt-2 font-bold break-words">
@@ -809,8 +809,8 @@ export default function AnalystPage() {
                             <p className="text-caption text-muted-foreground mt-2">Target penjualan bulanan untuk balik modal.</p>
                         </Card>
                     </div>
-                <div className="grid md:grid-cols-2 gap-8 mt-8">
-                        <Card>
+                <div className="flex flex-col md:flex-row gap-8 mt-8">
+                        <Card className="flex-1">
                              <Tabs defaultValue="monthly" className="w-full">
                                 <CardHeader>
                                     <div className="flex justify-between items-center">
@@ -831,7 +831,7 @@ export default function AnalystPage() {
                                 </CardContent>
                             </Tabs>
                         </Card>
-                         <Card>
+                         <Card className="flex-1">
                             <Tabs defaultValue="monthly" className="w-full">
                                 <CardHeader>
                                     <div className="flex justify-between items-center">

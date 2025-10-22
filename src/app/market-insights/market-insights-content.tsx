@@ -109,29 +109,29 @@ export default function MarketInsightsContent() {
                                 <CardTitle className="text-h3 font-medium">Wawasan Penting Pembeli Digital</CardTitle>
                                 <CardDescription>Pola perilaku kunci yang mendorong penjualan.</CardDescription>
                             </CardHeader>
-                            <CardContent className="p-0 mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">
-                                <div className="flex items-start gap-3">
+                            <CardContent className="p-0 mt-6 flex flex-col md:flex-row flex-wrap gap-x-6 gap-y-8">
+                                <div className="flex items-start gap-3 flex-1 min-w-full md:min-w-[calc(50%-0.75rem)] lg:min-w-[calc(25%-1.125rem)]">
                                      <div className="p-2.5 bg-primary/10 rounded-lg"><Clock className="w-5 h-5 text-primary" /></div>
                                     <div>
                                         <p className="font-semibold text-body">Puncak Belanja</p>
                                         <p className="text-muted-foreground text-sm">Pembelian memuncak di jam 19-21 malam & saat tanggal gajian tiba.</p>
                                     </div>
                                 </div>
-                                <div className="flex items-start gap-3">
+                                <div className="flex items-start gap-3 flex-1 min-w-full md:min-w-[calc(50%-0.75rem)] lg:min-w-[calc(25%-1.125rem)]">
                                    <div className="p-2.5 bg-primary/10 rounded-lg"><Sparkles className="w-5 h-5 text-primary" /></div>
                                     <div>
                                         <p className="font-semibold text-body">Pendorong Utama</p>
                                         <p className="text-muted-foreground text-sm">82% pelanggan membeli karena ada promo, diskon, atau gratis ongkir.</p>
                                     </div>
                                 </div>
-                                 <div className="flex items-start gap-3">
+                                 <div className="flex items-start gap-3 flex-1 min-w-full md:min-w-[calc(50%-0.75rem)] lg:min-w-[calc(25%-1.125rem)]">
                                    <div className="p-2.5 bg-primary/10 rounded-lg"><Percent className="w-5 h-5 text-primary" /></div>
                                     <div>
                                         <p className="font-semibold text-body">Sensitivitas Harga</p>
                                         <p className="text-muted-foreground text-sm">65% audiens aktif membandingkan harga di beberapa toko sebelum checkout.</p>
                                     </div>
                                 </div>
-                                 <div className="flex items-start gap-3">
+                                 <div className="flex items-start gap-3 flex-1 min-w-full md:min-w-[calc(50%-0.75rem)] lg:min-w-[calc(25%-1.125rem)]">
                                      <div className="p-2.5 bg-primary/10 rounded-lg"><Zap className="w-5 h-5 text-primary" /></div>
                                     <div>
                                         <p className="font-semibold text-body">Pengiriman Cepat</p>
@@ -173,9 +173,9 @@ export default function MarketInsightsContent() {
                                         </ChartContainer>
                                     </div>
                                 </div>
-                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 pt-4">
+                                 <div className="flex flex-col md:flex-row flex-wrap gap-x-8 gap-y-6 pt-4">
                                     {platformStrategyDescriptions.map((platform, index) => (
-                                        <div key={index}>
+                                        <div key={index} className="flex-1 min-w-full md:min-w-[calc(50%-1rem)]">
                                             <h4 className="font-semibold text-body">{platform.title}</h4>
                                             <p className="text-primary text-sm font-medium">{platform.subtitle}</p>
                                             <p className="text-sm text-muted-foreground mt-1">{platform.description}</p>
