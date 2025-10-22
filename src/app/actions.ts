@@ -45,7 +45,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export async function runAnalysis(data: FormData): Promise<{
+export interface AnalysisResult {
     annualRevenue: number;
     annualProfit: number;
     roas: number;
@@ -60,7 +60,11 @@ export async function runAnalysis(data: FormData): Promise<{
     soldUnits: number;
     targetUnits: number;
     calculatedMarketingBudget: number;
-}> {
+    aiError: boolean;
+}
+
+
+export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
   const validatedData = formSchema.parse(data);
 
   const { 
@@ -197,42 +201,40 @@ export async function runAnalysis(data: FormData): Promise<{
   
   let marketAnalysis: AnalyzeMarketEntryOutput;
   let strategicPlan: StrategicRecommendationsOutput;
+  let aiError = false;
 
   try {
-    marketAnalysis = await analyzeMarketEntry({
-        productName: validatedData.productName,
-        targetSegment: validatedData.targetSegment,
-        calculatedMarketingBudget,
-        financialForecastSummary,
-        marketConditionSummary
-    });
+    [marketAnalysis, strategicPlan] = await Promise.all([
+      analyzeMarketEntry({
+          productName: validatedData.productName,
+          targetSegment: validatedData.targetSegment,
+          calculatedMarketingBudget,
+          financialForecastSummary,
+          marketConditionSummary
+      }),
+      generateStrategicRecommendations({
+          productName: validatedData.productName,
+          targetSegmentation: validatedData.targetSegment,
+          calculatedMarketingBudget,
+          selectedMarketingStrategies: selectedStrategies,
+          annualProfitProjection: annualProfit,
+          roas,
+          monthlyProfitAndLossStatement: JSON.stringify(pnlTable.map(p => `${p.item}: Rp ${p.value.toLocaleString('id-ID')}`)),
+          monthlyCashFlowSimulation: JSON.stringify(cashflowTable.map(c => `${c.item}: Rp ${c.value.toLocaleString('id-ID')}`)),
+          warningsSummary,
+      })
+    ]);
   } catch (error) {
-    console.error("AI Market Analysis Failed:", error);
+    console.error("AI Analysis Failed:", error);
+    aiError = true;
     marketAnalysis = {
         evaluation: "Analisis AI Gagal",
-        keyConsiderations: "Gagal mendapatkan analisis pasar dari AI. Proyeksi finansial tetap ditampilkan."
+        keyConsiderations: "Waduh, AI lagi pusing. Coba lagi beberapa saat, ya. Proyeksi finansial di bawah ini tetap akurat."
     };
-  }
-
-  try {
-    strategicPlan = await generateStrategicRecommendations({
-        productName: validatedData.productName,
-        targetSegmentation: validatedData.targetSegment,
-        calculatedMarketingBudget,
-        selectedMarketingStrategies: selectedStrategies,
-        annualProfitProjection: annualProfit,
-        roas,
-        monthlyProfitAndLossStatement: JSON.stringify(pnlTable.map(p => `${p.item}: Rp ${p.value.toLocaleString('id-ID')}`)),
-        monthlyCashFlowSimulation: JSON.stringify(cashflowTable.map(c => `${c.item}: Rp ${c.value.toLocaleString('id-ID')}`)),
-        warningsSummary,
-    });
-  } catch (error) {
-    console.error("AI Strategic Plan Generation Failed:", error);
     strategicPlan = {
         recommendations: ["Rekomendasi strategis tidak tersedia karena analisis AI gagal."]
     };
   }
-
 
   return {
     annualRevenue,
@@ -249,5 +251,6 @@ export async function runAnalysis(data: FormData): Promise<{
     soldUnits,
     targetUnits,
     calculatedMarketingBudget,
+    aiError,
   };
 }

@@ -15,7 +15,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { ClipboardList, Loader2, Lightbulb, TrendingUp, Target, AlertTriangle, CheckCircle, ArrowRight, Video, Users, Receipt, Share2, Clock, Percent, Zap, Sparkles } from 'lucide-react';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDescription } from '@/components/ui/form';
 import Image from 'next/image';
-import { runAnalysis } from './actions';
+import { runAnalysis, type AnalysisResult } from './actions';
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartConfig } from '@/components/ui/chart';
 import { Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ComposedChart, Line } from 'recharts';
 import Link from 'next/link';
@@ -63,22 +63,7 @@ const formSchema = z.object({
 
 
 type FormData = z.infer<typeof formSchema>;
-type AnalysisResult = {
-  annualRevenue: number;
-  annualProfit: number;
-  roas: number;
-  bepUnit: number;
-  pnlTable: any[];
-  cashflowTable: any[];
-  pnlTableWeekly: any[];
-  cashflowTableWeekly: any[];
-  marketAnalysis: any;
-  strategicPlan: any;
-  warnings: string[];
-  soldUnits: number;
-  targetUnits: number;
-  calculatedMarketingBudget: number;
-};
+
 
 const marketingStrategies = [
     {
@@ -380,6 +365,14 @@ export default function AnalystPage() {
     try {
       const result = await runAnalysis(data);
       setAnalysisResult(result);
+      if (result.aiError) {
+          toast({
+              variant: "destructive",
+              title: "Analisis AI Gagal",
+              description: "Waduh, AI lagi pusing. Proyeksi finansial di bawah ini tetap akurat.",
+          });
+          playNotificationSound();
+      }
     } catch (error: any) {
       console.error("Analysis failed:", error);
       toast({
@@ -433,7 +426,7 @@ export default function AnalystPage() {
     </Table>
   );
 
-  const isAiAnalysisFailed = analysisResult?.marketAnalysis?.evaluation === "Analisis AI Gagal";
+  const isAiAnalysisFailed = analysisResult?.aiError === true;
 
 
   return (
@@ -793,28 +786,28 @@ export default function AnalystPage() {
                     </div>
 
                     <div className="flex flex-col md:flex-row flex-wrap gap-6 mt-8">
-                        <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-[calc(25%-1.125rem)]">
+                        <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-0">
                             <div>
                                <p className="text-body font-semibold">Proyeksi Pendapatan Tahunan</p>
                                <p className="text-2xl md:text-3xl mt-2 font-bold text-primary break-words">{formatCurrency(analysisResult.annualRevenue)}</p>
                             </div>
                             <p className="text-caption text-muted-foreground mt-2">Total omzet kotor sebelum dikurangi biaya.</p>
                         </Card>
-                        <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-[calc(25%-1.125rem)]">
+                        <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-0">
                              <div>
                                 <p className="text-body font-semibold">Proyeksi Profit Tahunan</p>
                                 <p className={`text-2xl md:text-3xl mt-2 font-bold break-words ${analysisResult.annualProfit < 0 ? 'text-destructive' : 'text-green-600'}`}>{formatCurrency(analysisResult.annualProfit)}</p>
                             </div>
                             <p className="text-caption text-muted-foreground mt-2">Sisa uang setelah semua biaya terbayar.</p>
                         </Card>
-                        <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-[calc(25%-1.125rem)]">
+                        <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-0">
                             <div>
                                <p className="text-body font-semibold">Return on Ad Spend (ROAS)</p>
                                <p className="text-2xl md:text-3xl mt-2 font-bold break-words">{`${analysisResult.roas.toFixed(2)}x`}</p>
                             </div>
                             <p className="text-caption text-muted-foreground mt-2">Pengembalian dari setiap Rupiah untuk iklan.</p>
                         </Card>
-                         <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-[calc(25%-1.125rem)]">
+                         <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-0">
                             <div>
                                <p className="text-body font-semibold">BEP (Break-Even Point)</p>
                                <p className="text-2xl md:text-3xl mt-2 font-bold break-words">
@@ -874,12 +867,7 @@ export default function AnalystPage() {
                             <CardTitle>Status Strategi Bisnismu</CardTitle>
                         </CardHeader>
                         <CardContent className="p-0 mt-4 space-y-4">
-                            {isAiAnalysisFailed ?
-                                (<Alert variant="destructive">
-                                    <AlertTriangle className="h-4 w-4" />
-                                    <AlertTitle>{analysisResult.marketAnalysis.evaluation}</AlertTitle>
-                                    <AlertDescription>{analysisResult.marketAnalysis.keyConsiderations}</AlertDescription>
-                                </Alert>) :
+                            {!isAiAnalysisFailed && (
                                 analysisResult.marketAnalysis.evaluation.includes("berisiko") || analysisResult.annualProfit < 0 ?
                                 (<Alert variant="destructive">
                                     <AlertTriangle className="h-4 w-4" />
@@ -891,7 +879,7 @@ export default function AnalystPage() {
                                     <AlertTitle>{analysisResult.marketAnalysis.evaluation}</AlertTitle>
                                     <AlertDescription>{analysisResult.marketAnalysis.keyConsiderations}</AlertDescription>
                                 </Alert>)
-                            }
+                            )}
                             {analysisResult.warnings && analysisResult.warnings.length > 0 && (
                                <Alert variant="destructive" className="mt-4">
                                   <AlertTriangle className="h-4 w-4" />
