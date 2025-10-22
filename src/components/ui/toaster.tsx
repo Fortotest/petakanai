@@ -4,7 +4,6 @@
 import { useToast } from "@/hooks/use-toast"
 import {
   Toast,
-  ToastClose,
   ToastDescription,
   ToastProvider,
   ToastTitle,
@@ -23,18 +22,21 @@ export function Toaster() {
         const iconColor = isDestructive ? 'text-destructive' : 'text-green-500';
 
         return (
-          <Toast key={id} variant={variant} {...props}>
-            <div className="flex items-center justify-between w-full mb-2">
+          <Toast key={id} variant={variant} {...props} className="p-3">
+            {/* Header */}
+            <div className="flex items-center justify-between w-full mb-1">
                 <div className="flex items-center gap-2">
                     <Icon className={`w-4 h-4 ${iconColor}`} />
-                    <span className="text-xs font-semibold uppercase text-muted-foreground">Petakan.ai</span>
+                    <span className="text-xs font-semibold uppercase text-gray-500">Petakan.ai</span>
                 </div>
-                <span className="text-xs text-muted-foreground">now</span>
+                <span className="text-xs text-gray-500">now</span>
             </div>
+            
+            {/* Body */}
             <div className="w-full pl-0">
-              {title && <ToastTitle>{title}</ToastTitle>}
+              {title && <ToastTitle className="font-bold text-black">{title}</ToastTitle>}
               {description && (
-                <ToastDescription>{description}</ToastDescription>
+                <ToastDescription className="text-black">{description}</ToastDescription>
               )}
             </div>
             {action}

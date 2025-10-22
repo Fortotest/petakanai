@@ -79,19 +79,22 @@
 }
 
 @layer components {
+  /* iOS-style Toast Notification */
   [data-radix-toast-root] {
-    background-color: hsl(var(--card));
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-color: hsl(var(--border));
+    @apply rounded-2xl p-3 shadow-lg border-none;
+    background-color: #EFEFEF;
   }
-  
+
   [data-radix-toast-root][data-variant="destructive"] {
-     border-color: hsl(var(--destructive) / 0.5);
-     color: hsl(var(--destructive));
+    background-color: #EFEFEF;
+  }
+
+  .dark [data-radix-toast-root] {
+    background-color: #333333;
   }
 
   .dark [data-radix-toast-root][data-variant="destructive"] {
-    border-color: hsl(var(--destructive));
+    background-color: #333333;
   }
   
   .dark [data-radix-toast-root] .text-black {
