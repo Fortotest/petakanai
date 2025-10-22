@@ -89,7 +89,7 @@ const ToastClose = React.forwardRef<
     <span className="text-xs text-muted-foreground">now</span>
   </ToastPrimitives.Close>
 ))
-ToastClose.displayName = ToastPrimitives.Close.displayName
+ToastClose.displayName = "ToastClose"
 
 const ToastTitle = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Title>,
