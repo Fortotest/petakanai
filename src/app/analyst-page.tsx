@@ -369,7 +369,7 @@ export default function AnalystPage() {
           toast({
               variant: "destructive",
               title: "Analisis AI Gagal",
-              description: "Waduh, AI lagi pusing. Coba lagi beberapa saat, ya. Proyeksi finansial di bawah ini tetap akurat.",
+              description: "Waduh, AI lagi pusing. Coba lagi beberapa saat, ya.",
           });
           playNotificationSound();
       }
@@ -536,8 +536,8 @@ export default function AnalystPage() {
                         <CardDescription>Pilih model yang paling sesuai, lalu atur harga dan biaya.</CardDescription>
                     </CardHeader>
                     <CardContent className="p-0 mt-6 space-y-8">
-                         <div className="flex flex-col md:flex-row gap-8 items-start">
-                             <div className="space-y-6 flex flex-col justify-center h-full flex-1">
+                         <div className="flex flex-col gap-8 items-start">
+                             <div className="space-y-6 flex flex-col justify-center h-full w-full">
                                 <FormField control={form.control} name="marginModel" render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Model Margin</FormLabel>
@@ -565,7 +565,7 @@ export default function AnalystPage() {
                                     </FormItem>
                                 )} />
                             </div>
-                            <div className="bg-background border p-4 rounded-xl h-full flex-1">
+                            <div className="bg-background border p-4 rounded-xl h-full w-full">
                               <h4 className="font-semibold text-lg text-primary">{selectedBusinessModel.persona}</h4>
                               <p className="mt-1 text-caption">{selectedBusinessModel.analysis}</p>
                               <p className="mt-2 text-caption font-semibold">{selectedBusinessModel.platforms}</p>
@@ -780,7 +780,7 @@ export default function AnalystPage() {
                         <p className="text-subtitle text-muted-foreground mt-2">Proyeksi kesehatan bisnismu berdasarkan data yang kamu isi.</p>
                     </div>
 
-                    <div className="flex flex-col md:flex-row flex-wrap gap-6 mt-8">
+                    <div className="flex flex-row flex-wrap gap-6 mt-8">
                         <Card className="p-6 text-center flex flex-col justify-between flex-1 min-w-full md:min-w-0">
                             <div>
                                <p className="text-body font-semibold">Proyeksi Pendapatan Tahunan</p>
@@ -866,7 +866,7 @@ export default function AnalystPage() {
                                 <Alert variant="destructive">
                                     <AlertTriangle className="h-4 w-4" />
                                     <AlertTitle>Analisis AI Gagal</AlertTitle>
-                                    <AlertDescription>Waduh, AI lagi pusing. Proyeksi finansial di bawah ini tetap akurat.</AlertDescription>
+                                    <AlertDescription>Waduh, AI lagi pusing. Coba lagi beberapa saat, ya.</AlertDescription>
                                 </Alert>
                             ) : (
                                 analysisResult.marketAnalysis.evaluation.includes("berisiko") || analysisResult.annualProfit < 0 ?
@@ -925,3 +925,5 @@ export default function AnalystPage() {
     </div>
   );
 }
+
+    
