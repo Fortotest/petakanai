@@ -9,8 +9,8 @@ const MarketInsightsContent = dynamic(() => import('./market-insights-content').
     loading: () => (
       <div className="flex flex-col items-center justify-center text-center p-8 h-96">
         <Loader2 className="w-12 h-12 animate-spin text-primary" />
-        <p className="mt-4 text-lg font-semibold">AI sedang memetakan medan perang...</p>
-        <p className="text-muted-foreground text-caption max-w-xs mx-auto">Mengumpulkan data GMV, pangsa pasar, dan perilaku konsumen terbaru untukmu.</p>
+        <p className="mt-4 text-lg font-semibold">Merangkum Peta Persaingan...</p>
+        <p className="text-muted-foreground text-caption max-w-xs mx-auto">Mengumpulkan data GMV, pangsa pasar, dan perilaku konsumen untuk memetakan strategimu.</p>
       </div>
     ),
     ssr: false 
