@@ -3,6 +3,7 @@ import { Header } from '@/components/header';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Target, CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function AboutPage() {
   return (
@@ -25,7 +26,7 @@ export default function AboutPage() {
           <Card>
             <CardContent className="space-y-4 text-body text-muted-foreground pt-6">
               <p>
-                Gua (RizkyFadil) bikin Petakan.ai karena masalah-masalah teknis yang gua alamin sendiri pas mau mulai jualan. Modal udah ada, tapi di kepala gua isinya cuma pertanyaan:
+                Gua (<Link href="https://www.instagram.com/masffadil/" target="_blank" rel="noopener noreferrer" className="font-semibold text-foreground hover:underline">RizkyFadil</Link>) bikin Petakan.ai karena masalah-masalah teknis yang gua alamin sendiri pas mau mulai jualan. Modal udah ada, tapi di kepala gua isinya cuma pertanyaan:
               </p>
               <blockquote className="border-l-2 border-primary pl-4 italic text-foreground/80 space-y-2">
                 <p>"Harga jual gua Rp 100.000, HPP-nya Rp 50.000. Tapi apa itu udah nutup biaya admin marketplace, biaya packaging, sama payment fee? Jangan-jangan untung bersih gua cuma 10 ribu perak."</p>
@@ -72,7 +73,7 @@ export default function AboutPage() {
       </main>
       <footer className="text-center text-sm text-muted-foreground mt-4 mb-8 container max-w-3xl px-4">
         <p>Laporan ini disusun berdasarkan analisis dan proyeksi dari data publik. Gunakan petakan.ai sebagai alat bantu strategis.</p>
-        <p className="mt-2">© 2025 Dibuat oleh RizkyFadil.</p>
+        <p className="mt-2">© 2025 Dibuat oleh <Link href="https://www.instagram.com/masffadil/" target="_blank" rel="noopener noreferrer" className="font-semibold text-muted-foreground hover:underline">RizkyFadil</Link>.</p>
       </footer>
     </>
   );
