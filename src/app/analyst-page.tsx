@@ -539,7 +539,7 @@ export default function AnalystPage() {
             <section id="model-bisnis">
                 <Card className="p-6 md:p-8">
                     <CardHeader className="p-0">
-                        <CardTitle className="text-h3 font-medium">Model Bisnis & Strategi Harga</CardTitle>
+                        <CardTitle className="text-h3 font-medium">Model Bisnis &amp; Strategi Harga</CardTitle>
                         <CardDescription>Pilih model yang paling sesuai, lalu atur harga dan biaya.</CardDescription>
                     </CardHeader>
                     <CardContent className="p-0 mt-6 space-y-8">
@@ -580,7 +580,7 @@ export default function AnalystPage() {
                         </div>
                         
                         <div>
-                            <h3 className="font-semibold text-lg mb-4">Kalkulator Harga & Biaya per Produk</h3>
+                            <h3 className="font-semibold text-lg mb-4">Kalkulator Harga &amp; Biaya per Produk</h3>
                             <div className="flex flex-col md:flex-row flex-wrap gap-4">
                                 <div className="flex-1 min-w-full md:min-w-0"><NumericInput name="sellPrice" control={form.control} label="Harga Jual" /></div>
                                 <div className="flex-1 min-w-full md:min-w-0"><NumericInput name="costOfGoods" control={form.control} label="Modal Produk (HPP)" /></div>
@@ -592,15 +592,15 @@ export default function AnalystPage() {
                                 /></div>
                             </div>
                         </div>
-                        <div className="flex flex-col md:flex-row gap-4">
-                            <div className="flex-1">
-                                <h3 className="font-semibold text-lg mb-2">Biaya Tetap & Target Penjualan</h3>
+                        <div className="flex flex-col gap-8">
+                            <div>
+                                <h3 className="font-semibold text-lg mb-2">Biaya Tetap &amp; Target Penjualan</h3>
                                 <div className="flex flex-col sm:flex-row gap-4">
                                     <div className="flex-1"><NumericInput name="fixedCostsPerMonth" control={form.control} label="Biaya Tetap / Bulan" /></div>
                                     <div className="flex-1"><NumericInput name="avgSalesPerMonth" control={form.control} label="Target Jual / Bulan" /></div>
                                 </div>
                             </div>
-                            <div className="flex-1">
+                            <div>
                                 <h3 className="font-semibold text-lg mb-2">Estimasi Profitabilitas</h3>
                                  <div className="flex flex-col sm:flex-row gap-4">
                                     <Card className="p-4 bg-muted/50 flex flex-col justify-between rounded-xl flex-1">
@@ -932,3 +932,5 @@ export default function AnalystPage() {
     </div>
   );
 }
+
+    
