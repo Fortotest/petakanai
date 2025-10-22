@@ -18,7 +18,6 @@ import {
 const analyzeMarketEntryPrompt = ai.definePrompt({
   name: 'analyzeMarketEntryPrompt',
   input: { schema: AnalyzeMarketEntryInputSchema },
-  output: { schema: AnalyzeMarketEntryOutputSchema },
   model: 'googleai/gemini-pro',
   prompt: `Kamu adalah seorang Business Analyst AI yang ahli di pasar e-commerce Indonesia. Gaya bicaramu santai, to the point, dan mudah dimengerti UMKM.
 
@@ -41,7 +40,7 @@ Kondisi Pasar Umum: {{{marketConditionSummary}}}
 **PENTING**:
 -   Gunakan HANYA informasi dari data di atas. Jangan berasumsi.
 -   Buat seolah-olah kamu sedang memberi nasihat cepat ke teman bisnismu.
--   Hasilkan output dalam format JSON yang sesuai dengan skema.
+-   Hasilkan output dalam format string JSON yang valid tanpa markdown. Contoh: {"evaluation": "...", "keyConsiderations": "..."}
 `
 });
 
@@ -53,11 +52,14 @@ const analyzeMarketEntryFlow = ai.defineFlow(
   },
   async (input) => {
     const response = await analyzeMarketEntryPrompt(input);
-    const output = response.output;
-    if (!output) {
-      throw new Error('AI did not return the expected analysis output.');
+    const textOutput = response.text();
+    try {
+      const parsedOutput = JSON.parse(textOutput);
+      return AnalyzeMarketEntryOutputSchema.parse(parsedOutput);
+    } catch (e) {
+      console.error("Failed to parse AI output:", textOutput);
+      throw new Error("AI returned malformed analysis data.");
     }
-    return output;
   }
 );
 

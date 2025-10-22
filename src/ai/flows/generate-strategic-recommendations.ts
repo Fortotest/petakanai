@@ -19,7 +19,6 @@ import {
 const generateStrategicRecommendationsPrompt = ai.definePrompt({
   name: 'generateStrategicRecommendationsPrompt',
   input: { schema: StrategicRecommendationsInputSchema },
-  output: { schema: StrategicRecommendationsOutputSchema },
   model: 'googleai/gemini-pro',
   prompt: `Kamu adalah seorang Business Strategist AI yang jago banget ngasih saran praktis buat UMKM di Indonesia. Gaya bicaramu santai, memotivasi, dan solutif.
 
@@ -50,7 +49,7 @@ Tugasmu adalah memberikan 3-5 Rencana Aksi Prioritas berdasarkan data simulasi b
     *   Hubungkan rekomendasi dengan \`Target Pasar\`. Contoh: "Karena target Anda '{{{targetSegmentation}}}', fokuskan iklan di Instagram Reels dan TikTok."
     *   Rekomendasi harus berupa langkah taktis yang bisa langsung dikerjakan. Mulai setiap poin dengan kata kerja.
     *   Gunakan bahasa Indonesia yang santai dan jelas.
--   **Hasilkan output dalam format JSON yang sesuai dengan skema.**
+-   **Hasilkan output dalam format string JSON yang valid tanpa markdown. Contoh: {"recommendations": ["Rekomendasi 1", "Rekomendasi 2"]}**
 `
 });
 
@@ -62,11 +61,14 @@ const generateStrategicRecommendationsFlow = ai.defineFlow(
   },
   async (input) => {
     const response = await generateStrategicRecommendationsPrompt(input);
-    const output = response.output;
-    if (!output) {
-      throw new Error('AI did not return the expected recommendations output.');
+    const textOutput = response.text();
+    try {
+      const parsedOutput = JSON.parse(textOutput);
+      return StrategicRecommendationsOutputSchema.parse(parsedOutput);
+    } catch (e) {
+      console.error("Failed to parse AI output:", textOutput);
+      throw new Error("AI returned malformed recommendations data.");
     }
-    return output;
   }
 );
 
