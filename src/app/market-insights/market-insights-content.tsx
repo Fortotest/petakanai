@@ -72,123 +72,125 @@ const platformStrategyDescriptions = [
 
 export default function MarketInsightsContent() {
     return (
-        <main className="container mx-auto px-4 py-8 max-w-7xl">
-            <div className="space-y-12 md:space-y-20">
-                <section id="wawasan-pasar" className="space-y-8 scroll-mt-24">
-                    <div className="text-center">
-                        <h2 className="text-h2 font-semibold">Peta Market E-Commerce 2025</h2>
-                        <p className="text-subtitle text-muted-foreground mt-2">Posisikan brand kamu dengan strategi yang tepat dan akurat, berdasarkan dinamika pasar terkini.</p>
-                    </div>
-                    <Card className="p-6 md:p-8">
-                        <CardHeader className="p-0">
-                            <CardTitle className="text-h3 font-medium">Proyeksi Gross Merchandise Value (GMV)</CardTitle>
-                            <CardDescription>Pasar mulai dewasa, fokus bergeser dari 'bakar uang' ke profitabilitas. Pertumbuhan melambat ke 5% (YoY).</CardDescription>
-                        </CardHeader>
-                        <CardContent className="p-0 mt-4 space-y-4">
-                            <p className="text-5xl font-bold text-primary">US$56,5 M</p>
-                            <div className="overflow-x-auto">
-                                <div className="h-60 w-full min-w-[600px]">
-                                    <ChartContainer config={gmvComboChartConfig} className="h-full w-full">
-                                        <ComposedChart data={gmvComboData} barCategoryGap="30%" margin={{ top: 20, right: 0, left: -20, bottom: 5 }}>
-                                            <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                                            <XAxis dataKey="month" tickLine={false} axisLine={false} tick={{ fill: 'hsl(var(--foreground))', fontSize: 12 }} />
-                                            <RechartsTooltip content={<ChartTooltipContent formatter={(value, name) => [`$${value}`, gmvComboChartConfig[name as keyof typeof gmvComboChartConfig]?.label]} />} />
-                                            <Bar dataKey="shopee" barSize={20} fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
-                                            <Line type="monotone" dataKey="average" stroke="hsl(var(--success))" strokeWidth={2} dot={false} />
-                                        </ComposedChart>
-                                    </ChartContainer>
-                                </div>
-                            </div>
-                            <p className="text-caption text-muted-foreground text-center">Visualisasi tren GMV antar platform besar.</p>
-                        </CardContent>
-
-                        <Separator className="my-8"/>
-
-                        <CardHeader className="p-0 mt-6">
-                            <CardTitle className="text-h3 font-medium">Wawasan Penting Pembeli Digital</CardTitle>
-                            <CardDescription>Pola perilaku kunci yang mendorong penjualan.</CardDescription>
-                        </CardHeader>
-                        <CardContent className="p-0 mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">
-                            <div className="flex items-start gap-3">
-                                 <div className="p-2.5 bg-primary/10 rounded-lg"><Clock className="w-5 h-5 text-primary" /></div>
-                                <div>
-                                    <p className="font-semibold text-body">Puncak Belanja</p>
-                                    <p className="text-muted-foreground text-sm">Pembelian memuncak di jam 19-21 malam & saat tanggal gajian tiba.</p>
-                                </div>
-                            </div>
-                            <div className="flex items-start gap-3">
-                               <div className="p-2.5 bg-primary/10 rounded-lg"><Sparkles className="w-5 h-5 text-primary" /></div>
-                                <div>
-                                    <p className="font-semibold text-body">Pendorong Utama</p>
-                                    <p className="text-muted-foreground text-sm">82% pelanggan membeli karena ada promo, diskon, atau gratis ongkir.</p>
-                                </div>
-                            </div>
-                             <div className="flex items-start gap-3">
-                               <div className="p-2.5 bg-primary/10 rounded-lg"><Percent className="w-5 h-5 text-primary" /></div>
-                                <div>
-                                    <p className="font-semibold text-body">Sensitivitas Harga</p>
-                                    <p className="text-muted-foreground text-sm">65% audiens aktif membandingkan harga di beberapa toko sebelum checkout.</p>
-                                </div>
-                            </div>
-                             <div className="flex items-start gap-3">
-                                 <div className="p-2.5 bg-primary/10 rounded-lg"><Zap className="w-5 h-5 text-primary" /></div>
-                                <div>
-                                    <p className="font-semibold text-body">Pengiriman Cepat</p>
-                                    <p className="text-muted-foreground text-sm">55% cenderung membatalkan pesanan jika estimasi pengiriman terlalu lama.</p>
-                                </div>
-                            </div>
-                        </CardContent>
-                    </Card>
-                </section>
-                
-                <section id="pangsa-pasar" className="scroll-mt-24">
-                    <Card className="p-6 md:p-8">
-                        <CardHeader className="p-0">
-                            <CardTitle className="text-h3 font-medium">Peta Kekuasaan E-Commerce (Estimasi Pangsa Pasar GMV 2025)</CardTitle>
-                            <CardDescription>Integrasi Tokopedia & TikTok menciptakan duopoli baru yang menantang dominasi Shopee.</CardDescription>
-                        </CardHeader>
-                        <CardContent className="p-0 mt-8 space-y-8">
-                            <div className="overflow-x-auto">
-                                <div className="w-full h-[300px] min-w-[500px]">
-                                    <ChartContainer config={marketShareChartConfig} className="h-full w-full">
-                                        <RechartsBarChart data={marketShareData} barCategoryGap="20%" margin={{ bottom: 20 }}>
-                                            <CartesianGrid vertical={false} strokeDasharray="3 3" />
-                                            <XAxis 
-                                                dataKey="name" 
-                                                tickLine={false} 
-                                                axisLine={false}
-                                                interval={0}
-                                                dy={10}
-                                                tick={{ textAnchor: 'middle', fontSize: 12, fill: 'hsl(var(--foreground))' }}
-                                            />
-                                            <YAxis hide />
-                                            <RechartsTooltip 
-                                                cursor={{ fill: 'hsl(var(--muted))' }} 
-                                                content={<ChartTooltipContent formatter={(value) => `${value}%`} />}
-                                            />
-                                            <Bar dataKey="value" fill="hsl(var(--primary))" radius={[8, 8, 0, 0]}>
-                                             </Bar>
-                                        </RechartsBarChart>
-                                    </ChartContainer>
-                                </div>
-                            </div>
-                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 pt-4">
-                                {platformStrategyDescriptions.map((platform, index) => (
-                                    <div key={index}>
-                                        <h4 className="font-semibold text-body">{platform.title}</h4>
-                                        <p className="text-primary text-sm font-medium">{platform.subtitle}</p>
-                                        <p className="text-sm text-muted-foreground mt-1">{platform.description}</p>
+        <>
+            <main className="container mx-auto px-4 py-8 max-w-7xl">
+                <div className="space-y-12 md:space-y-20">
+                    <section id="wawasan-pasar" className="space-y-8 scroll-mt-24">
+                        <div className="text-center">
+                            <h2 className="text-h2 font-semibold">Peta Market E-Commerce 2025</h2>
+                            <p className="text-subtitle text-muted-foreground mt-2">Posisikan brand kamu dengan strategi yang tepat dan akurat, berdasarkan dinamika pasar terkini.</p>
+                        </div>
+                        <Card className="p-6 md:p-8">
+                            <CardHeader className="p-0">
+                                <CardTitle className="text-h3 font-medium">Proyeksi Gross Merchandise Value (GMV)</CardTitle>
+                                <CardDescription>Pasar mulai dewasa, fokus bergeser dari 'bakar uang' ke profitabilitas. Pertumbuhan melambat ke 5% (YoY).</CardDescription>
+                            </CardHeader>
+                            <CardContent className="p-0 mt-4 space-y-4">
+                                <p className="text-5xl font-bold text-primary">US$56,5 M</p>
+                                <div className="overflow-x-auto">
+                                    <div className="h-60 w-full min-w-[600px]">
+                                        <ChartContainer config={gmvComboChartConfig} className="h-full w-full">
+                                            <ComposedChart data={gmvComboData} barCategoryGap="30%" margin={{ top: 20, right: 0, left: -20, bottom: 5 }}>
+                                                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                                                <XAxis dataKey="month" tickLine={false} axisLine={false} tick={{ fill: 'hsl(var(--foreground))', fontSize: 12 }} />
+                                                <RechartsTooltip content={<ChartTooltipContent formatter={(value, name) => [`$${value}`, gmvComboChartConfig[name as keyof typeof gmvComboChartConfig]?.label]} />} />
+                                                <Bar dataKey="shopee" barSize={20} fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                                                <Line type="monotone" dataKey="average" stroke="hsl(var(--success))" strokeWidth={2} dot={false} />
+                                            </ComposedChart>
+                                        </ChartContainer>
                                     </div>
-                                ))}
-                            </div>
-                        </CardContent>
-                    </Card>
-                </section>
-            </div>
-        </main>
-        <footer className="text-center text-sm text-muted-foreground mt-20 py-8 border-t">
-            <p>Laporan ini disusun berdasarkan analisis dan proyeksi dari data publik. Gunakan petakan.ai sebagai alat bantu strategis.</p>
-            <p className="mt-2">© 2025 Dibuat oleh RizkyFadil.</p>
-        </footer>
+                                </div>
+                                <p className="text-caption text-muted-foreground text-center">Visualisasi tren GMV antar platform besar.</p>
+                            </CardContent>
+
+                            <Separator className="my-8"/>
+
+                            <CardHeader className="p-0 mt-6">
+                                <CardTitle className="text-h3 font-medium">Wawasan Penting Pembeli Digital</CardTitle>
+                                <CardDescription>Pola perilaku kunci yang mendorong penjualan.</CardDescription>
+                            </CardHeader>
+                            <CardContent className="p-0 mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">
+                                <div className="flex items-start gap-3">
+                                     <div className="p-2.5 bg-primary/10 rounded-lg"><Clock className="w-5 h-5 text-primary" /></div>
+                                    <div>
+                                        <p className="font-semibold text-body">Puncak Belanja</p>
+                                        <p className="text-muted-foreground text-sm">Pembelian memuncak di jam 19-21 malam & saat tanggal gajian tiba.</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                   <div className="p-2.5 bg-primary/10 rounded-lg"><Sparkles className="w-5 h-5 text-primary" /></div>
+                                    <div>
+                                        <p className="font-semibold text-body">Pendorong Utama</p>
+                                        <p className="text-muted-foreground text-sm">82% pelanggan membeli karena ada promo, diskon, atau gratis ongkir.</p>
+                                    </div>
+                                </div>
+                                 <div className="flex items-start gap-3">
+                                   <div className="p-2.5 bg-primary/10 rounded-lg"><Percent className="w-5 h-5 text-primary" /></div>
+                                    <div>
+                                        <p className="font-semibold text-body">Sensitivitas Harga</p>
+                                        <p className="text-muted-foreground text-sm">65% audiens aktif membandingkan harga di beberapa toko sebelum checkout.</p>
+                                    </div>
+                                </div>
+                                 <div className="flex items-start gap-3">
+                                     <div className="p-2.5 bg-primary/10 rounded-lg"><Zap className="w-5 h-5 text-primary" /></div>
+                                    <div>
+                                        <p className="font-semibold text-body">Pengiriman Cepat</p>
+                                        <p className="text-muted-foreground text-sm">55% cenderung membatalkan pesanan jika estimasi pengiriman terlalu lama.</p>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </section>
+                    
+                    <section id="pangsa-pasar" className="scroll-mt-24">
+                        <Card className="p-6 md:p-8">
+                            <CardHeader className="p-0">
+                                <CardTitle className="text-h3 font-medium">Peta Kekuasaan E-Commerce (Estimasi Pangsa Pasar GMV 2025)</CardTitle>
+                                <CardDescription>Integrasi Tokopedia & TikTok menciptakan duopoli baru yang menantang dominasi Shopee.</CardDescription>
+                            </CardHeader>
+                            <CardContent className="p-0 mt-8 space-y-8">
+                                <div className="overflow-x-auto">
+                                    <div className="w-full h-[300px] min-w-[500px]">
+                                        <ChartContainer config={marketShareChartConfig} className="h-full w-full">
+                                            <RechartsBarChart data={marketShareData} barCategoryGap="20%" margin={{ bottom: 20 }}>
+                                                <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                                                <XAxis 
+                                                    dataKey="name" 
+                                                    tickLine={false} 
+                                                    axisLine={false}
+                                                    interval={0}
+                                                    dy={10}
+                                                    tick={{ textAnchor: 'middle', fontSize: 12, fill: 'hsl(var(--foreground))' }}
+                                                />
+                                                <YAxis hide />
+                                                <RechartsTooltip 
+                                                    cursor={{ fill: 'hsl(var(--muted))' }} 
+                                                    content={<ChartTooltipContent formatter={(value) => `${value}%`} />}
+                                                />
+                                                <Bar dataKey="value" fill="hsl(var(--primary))" radius={[8, 8, 0, 0]}>
+                                                 </Bar>
+                                            </RechartsBarChart>
+                                        </ChartContainer>
+                                    </div>
+                                </div>
+                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 pt-4">
+                                    {platformStrategyDescriptions.map((platform, index) => (
+                                        <div key={index}>
+                                            <h4 className="font-semibold text-body">{platform.title}</h4>
+                                            <p className="text-primary text-sm font-medium">{platform.subtitle}</p>
+                                            <p className="text-sm text-muted-foreground mt-1">{platform.description}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </section>
+                </div>
+            </main>
+            <footer className="text-center text-sm text-muted-foreground mt-20 py-8 border-t">
+                <p>Laporan ini disusun berdasarkan analisis dan proyeksi dari data publik. Gunakan petakan.ai sebagai alat bantu strategis.</p>
+                <p className="mt-2">© 2025 Dibuat oleh RizkyFadil.</p>
+            </footer>
+        </>
     );
 }
