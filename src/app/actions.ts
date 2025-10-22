@@ -205,23 +205,27 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     { item: 'Arus Kas Bersih', value: annualNetCashFlow, isNegative: annualNetCashFlow < 0 },
   ];
   
-  // const financialForecastSummary = `Proyeksi omzet tahunan: Rp ${annualRevenue.toLocaleString('id-ID')}. Proyeksi untung tahunan: Rp ${annualProfit.toLocaleString('id-ID')}. ROAS: ${roas.toFixed(2)}x. BEP: ${isFinite(bepUnit) ? `${Math.ceil(bepUnit)} unit/bulan` : 'Tidak tercapai'}.`;
+  const financialForecastSummary = `Proyeksi omzet tahunan: Rp ${annualRevenue.toLocaleString('id-ID')}. Proyeksi untung tahunan: Rp ${annualProfit.toLocaleString('id-ID')}. ROAS: ${roas.toFixed(2)}x. BEP: ${isFinite(bepUnit) ? `${Math.ceil(bepUnit)} unit/bulan` : 'Tidak tercapai'}.`;
   
-  // const marketConditionSummary = "Pasar e-commerce Indonesia sangat kompetitif, didominasi oleh Shopee dan TikTok Shop. Konsumen sensitif harga dan suka promo. Pertumbuhan didorong oleh adopsi digital di kota-kota lapis kedua dan ketiga.";
+  const marketConditionSummary = "Pasar e-commerce Indonesia sangat kompetitif, didominasi oleh Shopee dan TikTok Shop. Konsumen sensitif harga dan suka promo. Pertumbuhan didorong oleh adopsi digital di kota-kota lapis kedua dan ketiga.";
   
-  // const warningsSummary = warnings.length > 0 ? warnings.join('. ') : 'Tidak ada.';
+  const warningsSummary = warnings.length > 0 ? warnings.join('. ') : 'Tidak ada.';
   
   // AI features are temporarily disabled to allow for deployment without API keys.
+  // We'll set aiError to true to trigger the error toast and show placeholder messages.
+  const aiError = true;
   const marketAnalysis: AnalyzeMarketEntryOutput = {
-      evaluation: "Analisis AI Dinonaktifkan",
-      keyConsiderations: "Fitur analisis dan rekomendasi AI sedang tidak aktif untuk sementara waktu. Semua kalkulasi finansial tetap berjalan normal."
+      evaluation: "Waduh, AI-nya lagi pusing nih!",
+      keyConsiderations: "Coba refresh atau perbaiki datamu. Kalau masih error, kasih jeda beberapa saat, ya!"
   };
   const strategicPlan: StrategicRecommendationsOutput = {
       recommendations: [
-          "Rekomendasi AI tidak tersedia saat ini."
+        "Rekomendasi tidak dapat dimuat karena analisis AI gagal.",
+        "Pastikan semua data bisnis dan biaya telah diisi dengan benar.",
+        "Coba muat ulang halaman dan jalankan simulasi sekali lagi.",
+        "Jika masalah berlanjut, silakan coba lagi dalam beberapa saat."
       ]
   };
-  const aiError = false; // Set to false to prevent the error toast from showing
 
   /* 
   // Original AI logic - uncomment and provide API keys to re-enable
