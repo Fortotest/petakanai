@@ -24,7 +24,7 @@ export default function AboutPage() {
           </div>
 
           <Card>
-            <CardContent className="space-y-4 text-body text-muted-foreground pt-6 text-right">
+            <CardContent className="space-y-4 text-body text-muted-foreground pt-6">
               <p>
                 Gua <Link href="https://www.instagram.com/masffadil/" target="_blank" rel="noopener noreferrer" className="font-semibold text-primary hover:underline">RizkyFadil</Link> bikin Petakan.ai karena masalah-masalah teknis yang gua alamin sendiri pas mau mulai jualan. Modal udah ada, tapi di kepala gua isinya cuma pertanyaan:
               </p>
@@ -33,7 +33,7 @@ export default function AboutPage() {
                 <p>"Gua ada budget iklan 3 juta. Eh, tapi gua baru inget, ada PPN 11% buat iklan yang harus gua bayar di atasnya. Jadi total 'bakar uang' gua bukan 3 juta, tapi 3,33 juta. Gimana cara ngitung balik modalnya kalo biayanya nambah terus?"</p>
               </blockquote>
               <p>
-                Gua takut modal kebuang percuma cuma karena salah itung di detail-detail kecil kayak gitu. Keresahan-keresahan itu yang jadi Petakan.ai. Ini bukan alat yang rumit. Ini simulator simpel buat ngasih jawaban pasti atas pertanyaan-pertanyaan tadi, sebelum kamu buang modal sepeser pun.
+                Gua takut modal kebuang percuma cuma karena salah itung di detail-detail kecil kayak gitu. Keresahan-keresahan itu yang jadi Petakan.ai. Ini bukan alat yang rumit. Ini simulator simpel buat ngasih kamu jawaban pasti atas pertanyaan-pertanyaan tadi, sebelum kamu buang modal sepeser pun.
               </p>
             </CardContent>
           </Card>
