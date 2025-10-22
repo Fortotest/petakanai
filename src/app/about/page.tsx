@@ -33,7 +33,7 @@ export default function AboutPage() {
                 <p>"Gua ada budget iklan 3 juta. Eh, tapi gua baru inget, ada PPN 11% buat iklan yang harus gua bayar di atasnya. Jadi total 'bakar uang' gua bukan 3 juta, tapi 3,33 juta. Gimana cara ngitung balik modalnya kalo biayanya nambah terus?"</p>
               </blockquote>
               <p>
-                Gua takut modal kebuang percuma cuma karena salah itung di detail-detail kecil kayak gitu. Keresahan-keresahan itu yang jadi Petakan.ai. Ini bukan alat yang rumit. Ini simulator simpel buat ngasih kamu jawaban pasti atas pertanyaan-pertanyaan tadi, sebelum kamu buang modal sepeser pun.
+                Gua takut modal dan waktu kebuang percuma cuma karena salah hitung di detail or perintilan kecil. Keresahan-keresahan itu yang jadi Petakan.ai tercipta. dan Petakan.ai ini bukan alat yang rumit. Sangat mudah untuk memberi kamu jawaban pasti atas pertanyaan-pertanyaan tadi, sebelum kamu buang modal, waktu, sepeser pun.
               </p>
             </CardContent>
           </Card>
