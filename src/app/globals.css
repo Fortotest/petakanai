@@ -81,4 +81,8 @@
   [data-radix-toast-root] {
     @apply bg-white/60 dark:bg-zinc-900/60 backdrop-blur-lg border-white/20 dark:border-zinc-800/80 shadow-lg;
   }
+  
+  [data-radix-toast-root][data-variant="destructive"] {
+    @apply bg-white/60 dark:bg-zinc-900/60 backdrop-blur-lg border-white/20 dark:border-zinc-800/80 text-destructive dark:text-red-400;
+  }
 }

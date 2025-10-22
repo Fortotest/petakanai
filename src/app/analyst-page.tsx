@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
@@ -375,7 +374,14 @@ export default function AnalystPage() {
       }
     } catch (error: any) {
       console.error("Analysis failed:", error);
-      setAnalysisResult(error as AnalysisResult)
+      toast({
+        variant: "destructive",
+        title: "Terjadi Error",
+        description: "Gagal menjalankan analisis. Silakan coba lagi.",
+      });
+      playNotificationSound();
+      // Even on failure, you might want to clear results or handle state
+      setAnalysisResult(null);
     } finally {
       setIsLoading(false);
     }
