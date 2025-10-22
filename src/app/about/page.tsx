@@ -25,7 +25,14 @@ export default function AboutPage() {
           <Card>
             <CardContent className="space-y-4 text-body text-muted-foreground pt-6">
               <p>
-                Awalnya, kami pikir semuanya udah siap. Produk udah ada, stok numpuk, feed Instagram rapi. Tinggal tunggu orderan masuk. Padahal bukan karena produknya jelek. Tapi karena <strong className="text-foreground">strateginya ngaco.</strong> Iklan udah running, tapi asal tembak. Gak tahu siapa yang harus dituju. Harga ditetapkan tanpa hitung-hitunga. Akhirnya? Budget iklan ludes, stok gak muter, dan waktu kebuang percuma.
+                Saya (RizkyFadil) bikin Petakan.ai karena masalah-masalah teknis yang saya alamin sendiri pas mau mulai jualan. Modal udah ada, tapi di kepala saya isinya cuma pertanyaan:
+              </p>
+              <blockquote className="border-l-2 border-primary pl-4 italic text-foreground/80 space-y-2">
+                <p>"Harga jual saya Rp 100.000, HPP-nya Rp 50.000. Tapi apa itu udah nutup biaya admin marketplace, biaya packaging, sama payment fee? Jangan-jangan untung bersih saya cuma 10 ribu perak."</p>
+                <p>"Saya ada budget iklan 3 juta. Eh, tapi saya baru inget, ada PPN 11% buat iklan yang harus saya bayar di atasnya. Jadi total 'bakar uang' saya bukan 3 juta, tapi 3,33 juta. Gimana cara ngitung balik modalnya kalo biayanya nambah terus?"</p>
+              </blockquote>
+              <p>
+                Saya takut modal kebuang percuma cuma karena salah itung di detail-detail kecil kayak gitu. Keresahan-keresahan itu yang jadi Petakan.ai. Ini bukan alat yang rumit. Ini simulator simpel buat ngasih kamu jawaban pasti atas pertanyaan-pertanyaan tadi, sebelum kamu buang modal sepeser pun.
               </p>
             </CardContent>
           </Card>
@@ -33,22 +40,26 @@ export default function AboutPage() {
           <Card>
             <CardHeader className="p-6 pb-2">
               <CardTitle className="text-h3 flex items-center gap-2">
-                Di Petakan.ai, lo bisa:
+                Di Petakan.ai, lo bisa langsung:
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6 pt-2 space-y-3">
               <ul className="space-y-3 text-body">
-                <li className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0"/>
-                  <span>Simulasiin <strong className="text-foreground">untung-rugi</strong> dari ide lo.</span>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1"/>
+                  <span><strong className="text-foreground">Validasi Harga Jual Lo</strong> (Biar tau untung bersih real setelah HPP, biaya admin, packaging, dll.)</span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0"/>
-                  <span>Validasi <strong className="text-foreground">strategi harga</strong> dan budget iklan.</span>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1"/>
+                  <span><strong className="text-foreground">Hitung Budget Iklan (Termasuk Pajak!)</strong> (Biar tau budget 3 juta + PPN 11% itu harus jadi berapa penjualan biar gak rugi.)</span>
                 </li>
-                 <li className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0"/>
-                  <span>Dapat insight dari <strong className="text-foreground">perilaku pasar</strong> digital Indonesia.</span>
+                 <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1"/>
+                  <span><strong className="text-foreground">Temukan BEP (Balik Modal) Lo</strong> (Biar tau harus jual berapa unit buat nutupin semua biaya lo.)</span>
+                </li>
+                 <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1"/>
+                  <span><strong className="text-foreground">Dapat Wawasan & Rekomendasi AI</strong> (Berdasarkan data lo, AI kasih insight pasar Indo & strategi yang bisa langsung lo pratekin.)</span>
                 </li>
               </ul>
             </CardContent>
@@ -56,11 +67,8 @@ export default function AboutPage() {
            
            <Card>
              <CardContent className="p-6 space-y-4 text-left">
-                <p className="text-body text-muted-foreground">
-                    Platform ini dibuat oleh RizkyFadil, karena gue inget banget waktu pertama kali jualan di internet... ujung-ujungnya rungkad. Bukan karena produknya jelek, atau gak punya nilai. Tapi karena gak ngerti siapa targetnya. Dan yang paling parah: gak paham strategi apa yang sebenarnya dibutuhin.
-                </p>
-                 <p className="text-body text-muted-foreground">
-                    Waktu, tenaga, dan uang kebuang percuma. Cuma gara-gara gak tahu arah. Dari situ gue sadar: setiap ide bisnis selalu datang bawa harapan. Dan harapan itu gak cukup dikawal semangat doang. Lo butuh strategi. Yang jelas. Yang tepat. Dari awal.
+                <p className="text-body text-center text-muted-foreground">
+                    Jangan 'modal nekat'.
                 </p>
             </CardContent>
           </Card>
