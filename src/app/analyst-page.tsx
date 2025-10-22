@@ -776,8 +776,8 @@ export default function AnalystPage() {
             {isLoading && (
               <div className="flex flex-col items-center justify-center text-center p-8">
                 <Loader2 className="w-12 h-12 animate-spin text-primary" />
-                <p className="mt-4 text-lg font-semibold">Sedang memproses simulasimu...</p>
-                <p className="text-muted-foreground text-caption">Mohon tunggu, kami sedang menghitung proyeksi profit, ROAS, dan BEP untuk strategimu.</p>
+                <p className="mt-4 text-lg font-semibold">Tunggu dulu...</p>
+                <p className="text-muted-foreground text-caption">AI sedang memproses datamu.</p>
               </div>
             )}
 
@@ -942,7 +942,5 @@ export default function AnalystPage() {
     </div>
   );
 }
-
-    
 
     
