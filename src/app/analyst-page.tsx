@@ -830,10 +830,10 @@ export default function AnalystPage() {
                              <Tabs defaultValue="monthly" className="w-full">
                                 <CardHeader>
                                     <div className="flex items-center justify-between gap-2">
-                                        <CardTitle>Laporan<br />Untung Rugi</CardTitle>
+                                        <CardTitle>Laporan<br/>Untung Rugi</CardTitle>
                                         <TabsList className="grid grid-cols-2 h-8 p-1 text-xs">
                                             <TabsTrigger value="monthly" className="h-6 px-2 text-xs">Bulanan</TabsTrigger>
-                                            <TabsTrigger value="weekly" className="h-6 px-2 text-xs">Mingguan</TabsTrigger>
+                                            <TabsTrigger value="annual" className="h-6 px-2 text-xs">Tahunan</TabsTrigger>
                                         </TabsList>
                                     </div>
                                 </CardHeader>
@@ -841,8 +841,8 @@ export default function AnalystPage() {
                                     <TabsContent value="monthly">
                                         {renderTable(analysisResult.pnlTable, true)}
                                     </TabsContent>
-                                    <TabsContent value="weekly">
-                                        {renderTable(analysisResult.pnlTableWeekly, true)}
+                                    <TabsContent value="annual">
+                                        {renderTable(analysisResult.pnlTableAnnual, true)}
                                     </TabsContent>
                                 </CardContent>
                             </Tabs>
@@ -851,10 +851,10 @@ export default function AnalystPage() {
                             <Tabs defaultValue="monthly" className="w-full">
                                 <CardHeader>
                                      <div className="flex items-center justify-between gap-2">
-                                        <CardTitle>Simulasi<br />Arus Kas</CardTitle>
+                                        <CardTitle>Simulasi<br/>Arus Kas</CardTitle>
                                         <TabsList className="grid grid-cols-2 h-8 p-1 text-xs">
                                             <TabsTrigger value="monthly" className="h-6 px-2 text-xs">Bulanan</TabsTrigger>
-                                            <TabsTrigger value="weekly" className="h-6 px-2 text-xs">Mingguan</TabsTrigger>
+                                            <TabsTrigger value="annual" className="h-6 px-2 text-xs">Tahunan</TabsTrigger>
                                         </TabsList>
                                     </div>
                                 </CardHeader>
@@ -862,8 +862,8 @@ export default function AnalystPage() {
                                     <TabsContent value="monthly">
                                         {renderTable(analysisResult.cashflowTable, false)}
                                     </TabsContent>
-                                    <TabsContent value="weekly">
-                                        {renderTable(analysisResult.cashflowTableWeekly, false)}
+                                    <TabsContent value="annual">
+                                        {renderTable(analysisResult.cashflowTableAnnual, false)}
                                     </TabsContent>
                                 </CardContent>
                             </Tabs>
@@ -875,14 +875,7 @@ export default function AnalystPage() {
                             <CardTitle>Status Strategi Bisnismu</CardTitle>
                         </CardHeader>
                         <CardContent className="p-0 mt-4 space-y-4">
-                            {isAiAnalysisFailed ? (
-                                <Alert variant="destructive">
-                                    <AlertTriangle className="h-4 w-4" />
-                                    <AlertTitle>{analysisResult.marketAnalysis.evaluation}</AlertTitle>
-                                    <AlertDescription>{analysisResult.marketAnalysis.keyConsiderations}</AlertDescription>
-                                </Alert>
-                            ) : (
-                                analysisResult.marketAnalysis.evaluation.includes("berisiko") || analysisResult.annualProfit < 0 ?
+                            {analysisResult.marketAnalysis.evaluation.includes("berisiko") || analysisResult.annualProfit < 0 || isAiAnalysisFailed ?
                                 (<Alert variant="destructive">
                                     <AlertTriangle className="h-4 w-4" />
                                     <AlertTitle>{analysisResult.marketAnalysis.evaluation}</AlertTitle>
@@ -893,7 +886,7 @@ export default function AnalystPage() {
                                     <AlertTitle>{analysisResult.marketAnalysis.evaluation}</AlertTitle>
                                     <AlertDescription>{analysisResult.marketAnalysis.keyConsiderations}</AlertDescription>
                                 </Alert>)
-                            )}
+                            }
                             {analysisResult.warnings && analysisResult.warnings.length > 0 && (
                                <Alert variant="destructive" className="mt-4">
                                   <AlertTriangle className="h-4 w-4" />
@@ -946,6 +939,3 @@ export default function AnalystPage() {
     </div>
   );
 }
-
-
-    

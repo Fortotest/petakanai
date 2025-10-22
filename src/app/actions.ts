@@ -53,8 +53,8 @@ export interface AnalysisResult {
     bepUnit: number;
     pnlTable: any[];
     cashflowTable: any[];
-    pnlTableWeekly: any[];
-    cashflowTableWeekly: any[];
+    pnlTableAnnual: any[];
+    cashflowTableAnnual: any[];
     marketAnalysis: AnalyzeMarketEntryOutput;
     strategicPlan: StrategicRecommendationsOutput;
     warnings: string[];
@@ -113,22 +113,21 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
   // --- FINANCIAL CALCULATIONS ---
   // Monthly
   const monthlyRevenue = sellPrice * soldUnits;
-  const annualRevenue = monthlyRevenue * 12;
   const monthlyCostOfGoods = costOfGoods * soldUnits;
   const monthlyOtherVariableCosts = monthlyRevenue * (otherCostsPercentage / 100);
   const totalVariableCosts = monthlyCostOfGoods + monthlyOtherVariableCosts;
   const totalMonthlyCosts = totalVariableCosts + fixedCostsPerMonth + calculatedMarketingBudget;
   const monthlyProfit = monthlyRevenue - totalMonthlyCosts;
+
+  // Annual
+  const annualSoldUnits = soldUnits * 12;
+  const annualRevenue = monthlyRevenue * 12;
+  const annualCostOfGoods = monthlyCostOfGoods * 12;
+  const annualOtherVariableCosts = monthlyOtherVariableCosts * 12;
+  const annualFixedCosts = fixedCostsPerMonth * 12;
+  const annualMarketingBudget = calculatedMarketingBudget * 12;
   const annualProfit = monthlyProfit * 12;
 
-  // Weekly (approximated)
-  const weeklySoldUnits = Math.floor(soldUnits / 4);
-  const weeklyRevenue = monthlyRevenue / 4;
-  const weeklyCostOfGoods = monthlyCostOfGoods / 4;
-  const weeklyOtherVariableCosts = monthlyOtherVariableCosts / 4;
-  const weeklyFixedCosts = fixedCostsPerMonth / 4;
-  const weeklyMarketingBudget = calculatedMarketingBudget / 4;
-  const weeklyProfit = monthlyProfit / 4;
 
   // ROAS Calculation
   const roas = calculatedMarketingBudget > 0 ? monthlyRevenue / calculatedMarketingBudget : 0;
@@ -173,25 +172,25 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     { item: 'Arus Kas Bersih', value: netCashFlow, isNegative: netCashFlow < 0 },
   ];
 
-  const weeklyGrossProfit = weeklyRevenue - weeklyCostOfGoods;
-  const pnlTableWeekly = [
-    { item: `Omzet Mingguan (dari ${weeklySoldUnits} unit)`, value: weeklyRevenue, isNegative: false },
-    { item: 'Modal Produk (HPP)', value: weeklyCostOfGoods, isNegative: true },
-    { item: 'Untung Kotor', value: weeklyGrossProfit, isNegative: weeklyGrossProfit < 0 },
-    { item: `Biaya Variabel Lainnya (${otherCostsPercentage}%)`, value: weeklyOtherVariableCosts, isNegative: true },
-    { item: 'Biaya Tetap Mingguan', value: weeklyFixedCosts, isNegative: true },
-    { item: 'Biaya Pemasaran (Budget)', value: weeklyMarketingBudget, isNegative: true },
-    { item: 'Untung Bersih Mingguan', value: weeklyProfit, isNegative: weeklyProfit < 0 },
+  const annualGrossProfit = annualRevenue - annualCostOfGoods;
+  const pnlTableAnnual = [
+    { item: `Omzet Tahunan (dari ${annualSoldUnits} unit)`, value: annualRevenue, isNegative: false },
+    { item: 'Modal Produk (HPP)', value: annualCostOfGoods, isNegative: true },
+    { item: 'Untung Kotor', value: annualGrossProfit, isNegative: annualGrossProfit < 0 },
+    { item: `Biaya Variabel Lainnya (${otherCostsPercentage}%)`, value: annualOtherVariableCosts, isNegative: true },
+    { item: 'Biaya Tetap Tahunan', value: annualFixedCosts, isNegative: true },
+    { item: 'Biaya Pemasaran (Budget)', value: annualMarketingBudget, isNegative: true },
+    { item: 'Untung Bersih Tahunan', value: annualProfit, isNegative: annualProfit < 0 },
   ];
-  const weeklyNetCashFlow = weeklyRevenue - (weeklyCostOfGoods + weeklyOtherVariableCosts + weeklyFixedCosts + weeklyMarketingBudget);
-  const cashflowTableWeekly = [
-    { item: 'Duit Masuk dari Penjualan', value: weeklyRevenue, isNegative: false },
-    { item: 'Duit Keluar: Modal Produk (HPP)', value: weeklyCostOfGoods, isNegative: true },
-    { item: 'Untung Kotor (Non-operasional)', value: weeklyGrossProfit, isNegative: weeklyGrossProfit < 0, isPlaceholder: true },
-    { item: `Duit Keluar: Biaya Variabel Lain (${otherCostsPercentage}%)`, value: weeklyOtherVariableCosts, isNegative: true },
-    { item: 'Duit Keluar: Biaya Tetap', value: weeklyFixedCosts, isNegative: true },
-    { item: 'Duit Keluar: Budget Pemasaran', value: weeklyMarketingBudget, isNegative: true },
-    { item: 'Arus Kas Bersih', value: weeklyNetCashFlow, isNegative: weeklyNetCashFlow < 0 },
+  const annualNetCashFlow = annualRevenue - (annualCostOfGoods + annualOtherVariableCosts + annualFixedCosts + annualMarketingBudget);
+  const cashflowTableAnnual = [
+    { item: 'Duit Masuk dari Penjualan', value: annualRevenue, isNegative: false },
+    { item: 'Duit Keluar: Modal Produk (HPP)', value: annualCostOfGoods, isNegative: true },
+    { item: 'Untung Kotor (Non-operasional)', value: annualGrossProfit, isNegative: annualGrossProfit < 0, isPlaceholder: true },
+    { item: `Duit Keluar: Biaya Variabel Lain (${otherCostsPercentage}%)`, value: annualOtherVariableCosts, isNegative: true },
+    { item: 'Duit Keluar: Biaya Tetap', value: annualFixedCosts, isNegative: true },
+    { item: 'Duit Keluar: Budget Pemasaran', value: annualMarketingBudget, isNegative: true },
+    { item: 'Arus Kas Bersih', value: annualNetCashFlow, isNegative: annualNetCashFlow < 0 },
   ];
   
   const financialForecastSummary = `Proyeksi omzet tahunan: Rp ${annualRevenue.toLocaleString('id-ID')}. Proyeksi untung tahunan: Rp ${annualProfit.toLocaleString('id-ID')}. ROAS: ${roas.toFixed(2)}x. BEP: ${isFinite(bepUnit) ? `${Math.ceil(bepUnit)} unit/bulan` : 'Tidak tercapai'}.`;
@@ -249,8 +248,8 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     bepUnit,
     pnlTable,
     cashflowTable,
-    pnlTableWeekly,
-    cashflowTableWeekly,
+    pnlTableAnnual,
+    cashflowTableAnnual,
     marketAnalysis,
     strategicPlan,
     warnings,
@@ -260,4 +259,3 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     aiError,
   };
 }
-
