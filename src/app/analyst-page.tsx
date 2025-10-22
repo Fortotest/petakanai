@@ -581,9 +581,9 @@ export default function AnalystPage() {
                         
                         <div>
                             <h3 className="font-semibold text-lg mb-4">Kalkulator Harga &amp; Biaya per Produk</h3>
-                            <div className="flex flex-col md:flex-row flex-wrap gap-4">
-                                <div className="flex-1 min-w-full md:min-w-0"><NumericInput name="sellPrice" control={form.control} label="Harga Jual" /></div>
-                                <div className="flex-1 min-w-full md:min-w-0"><NumericInput name="costOfGoods" control={form.control} label="Modal Produk (HPP)" /></div>
+                            <div className="flex flex-col flex-wrap gap-4">
+                                <div className="flex-1 min-w-full md:min-w-0"><NumericInput name="sellPrice" control={form.control} label="Harga Jual" description="Harga yang akan dilihat oleh pelanggan." /></div>
+                                <div className="flex-1 min-w-full md:min-w-0"><NumericInput name="costOfGoods" control={form.control} label="Modal Produk (HPP)" description="Total biaya untuk memproduksi satu unit produk." /></div>
                                 <div className="flex-1 min-w-full md:min-w-0"><NumericInput 
                                   name="otherCostsPercentage" 
                                   control={form.control} 
@@ -593,41 +593,43 @@ export default function AnalystPage() {
                             </div>
                         </div>
                         <div className="flex flex-col gap-8">
-                            <div>
-                                <h3 className="font-semibold text-lg mb-2">Biaya Tetap &amp; Target Penjualan</h3>
-                                <div className="flex flex-col sm:flex-row gap-4">
-                                    <div className="flex-1"><NumericInput name="fixedCostsPerMonth" control={form.control} label="Biaya Tetap / Bulan" /></div>
-                                    <div className="flex-1"><NumericInput name="avgSalesPerMonth" control={form.control} label="Target Jual / Bulan" /></div>
+                            <div className="flex flex-col gap-8">
+                                <div>
+                                    <h3 className="font-semibold text-lg mb-2">Biaya Tetap &amp; Target Penjualan</h3>
+                                    <div className="flex flex-col sm:flex-row gap-4">
+                                        <div className="flex-1"><NumericInput name="fixedCostsPerMonth" control={form.control} label="Biaya Tetap / Bulan" /></div>
+                                        <div className="flex-1"><NumericInput name="avgSalesPerMonth" control={form.control} label="Target Jual / Bulan" /></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                <h3 className="font-semibold text-lg mb-2">Estimasi Profitabilitas</h3>
-                                 <div className="flex flex-col sm:flex-row gap-4">
-                                    <Card className="p-4 bg-muted/50 flex flex-col justify-between rounded-xl flex-1">
-                                        <div>
-                                            <p className="text-caption text-muted-foreground">Laba/unit (Non-iklan)</p>
-                                            <p className={cn(
-                                                "text-xl font-bold break-all",
-                                                calculations.profitPerUnitExcludingMarketing > 0 ? "text-green-600" :
-                                                calculations.profitPerUnitExcludingMarketing < 0 ? "text-destructive" : "text-foreground"
-                                            )}>{formatCurrency(calculations.profitPerUnitExcludingMarketing)}</p>
-                                        </div>
-                                        <p className="text-xs text-muted-foreground mt-1">Keuntungan bersih setelah semua biaya dari satu produk terjual.</p>
-                                    </Card>
-                                    <Card className="p-4 bg-muted/50 flex flex-col justify-between rounded-xl flex-1">
-                                        <div>
-                                            <p className="text-caption text-muted-foreground">BEP (unit)</p>
-                                            <p className={cn(
-                                                "text-xl font-bold break-all",
-                                                isFinite(calculations.bepUnit) && calculations.bepUnit > 0
-                                                    ? "text-green-600"
-                                                    : "text-destructive"
-                                            )}>
-                                              {isFinite(calculations.bepUnit) ? new Intl.NumberFormat('id-ID').format(Math.ceil(calculations.bepUnit)) : 'N/A'}
-                                            </p>
-                                        </div>
-                                        <p className="text-xs text-muted-foreground mt-1">Jumlah produk yang harus terjual untuk balik modal setiap bulan.</p>
-                                    </Card>
+                                <div>
+                                    <h3 className="font-semibold text-lg mb-2">Estimasi Profitabilitas</h3>
+                                     <div className="flex flex-col sm:flex-row gap-4">
+                                        <Card className="p-4 bg-muted/50 flex flex-col justify-between rounded-xl flex-1">
+                                            <div>
+                                                <p className="text-caption text-muted-foreground">Laba/unit (Non-iklan)</p>
+                                                <p className={cn(
+                                                    "text-xl font-bold break-all",
+                                                    calculations.profitPerUnitExcludingMarketing > 0 ? "text-green-600" :
+                                                    calculations.profitPerUnitExcludingMarketing < 0 ? "text-destructive" : "text-foreground"
+                                                )}>{formatCurrency(calculations.profitPerUnitExcludingMarketing)}</p>
+                                            </div>
+                                            <p className="text-xs text-muted-foreground mt-1">Keuntungan bersih setelah semua biaya dari satu produk terjual.</p>
+                                        </Card>
+                                        <Card className="p-4 bg-muted/50 flex flex-col justify-between rounded-xl flex-1">
+                                            <div>
+                                                <p className="text-caption text-muted-foreground">BEP (unit)</p>
+                                                <p className={cn(
+                                                    "text-xl font-bold break-all",
+                                                    isFinite(calculations.bepUnit) && calculations.bepUnit > 0
+                                                        ? "text-green-600"
+                                                        : "text-destructive"
+                                                )}>
+                                                  {isFinite(calculations.bepUnit) ? new Intl.NumberFormat('id-ID').format(Math.ceil(calculations.bepUnit)) : 'N/A'}
+                                                </p>
+                                            </div>
+                                            <p className="text-xs text-muted-foreground mt-1">Jumlah produk yang harus terjual untuk balik modal setiap bulan.</p>
+                                        </Card>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -932,5 +934,3 @@ export default function AnalystPage() {
     </div>
   );
 }
-
-    
