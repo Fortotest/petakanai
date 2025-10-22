@@ -64,14 +64,6 @@ export default function AboutPage() {
               </ul>
             </CardContent>
           </Card>
-           
-           <Card>
-             <CardContent className="p-6 space-y-4 text-left">
-                <p className="text-body text-center text-muted-foreground">
-                    Jangan 'modal nekat'.
-                </p>
-            </CardContent>
-          </Card>
 
           <div className="text-center pt-4">
             <h2 className="text-h2 font-semibold tracking-tight">Petakan Sebelum Jalan.</h2>
