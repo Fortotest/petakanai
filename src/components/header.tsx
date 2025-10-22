@@ -12,23 +12,13 @@ import { usePathname } from 'next/navigation';
 
 const navLinks = [
     { href: '/market-insights', label: 'Wawasan Pasar' },
-    { href: '/', label: 'Simulasi' },
+    { href: '/#cek-strategi', label: 'Simulasi' },
     { href: '/about', label: 'About' },
 ];
 
 export function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
-
-    const getLinkHref = (link: { href: string, label: string }) => {
-        if (link.label === 'Wawasan Pasar') {
-            return '/market-insights';
-        }
-        if (link.label === 'Simulasi') {
-            return '/#cek-strategi';
-        }
-        return link.href;
-    }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -49,11 +39,11 @@ export function Header() {
         <nav className="hidden md:flex flex-1 items-center gap-6 text-sm">
             {navLinks.map(link => (
                 <Link 
-                    href={getLinkHref(link)} 
+                    href={link.href} 
                     key={link.href}
                     className={cn(
                         "font-medium transition-colors hover:text-primary", 
-                        pathname === link.href ? "text-primary" : "text-muted-foreground"
+                        (pathname === link.href || (link.href === '/#cek-strategi' && pathname === '/')) ? "text-primary" : "text-muted-foreground"
                     )}
                 >
                     {link.label}
@@ -87,7 +77,7 @@ export function Header() {
                 <nav className="flex flex-col gap-4 mt-8">
                     {navLinks.map(link => (
                         <SheetClose asChild key={link.href}>
-                            <Link href={getLinkHref(link)} className={cn("text-lg font-medium transition-colors hover:text-primary", { 'text-primary': pathname === link.href } )}>{link.label}</Link>
+                            <Link href={link.href} className={cn("text-lg font-medium transition-colors hover:text-primary", { 'text-primary': pathname === link.href || (link.href === '/#cek-strategi' && pathname === '/') } )}>{link.label}</Link>
                         </SheetClose>
                     ))}
                 </nav>
