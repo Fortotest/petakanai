@@ -2,8 +2,6 @@
 
 > Lihat Untung-Ruginya, Sebelum Kamu Menjalankan Strateginya.
 
-![Header Petakan.ai](https://raw.githubusercontent.com/tesweb2025/Market-Intelligence-5.1/5b6a1a383615c433ee8165fc4d0317bd0daaa46f/HEADER%2520BARU%2520(1).png?raw=true)
-
 **Petakan.ai** adalah sebuah simulator bisnis interaktif yang dirancang untuk membantu pemilik usaha, pemasar, dan *brand* (khususnya di pasar e-commerce Indonesia) untuk memvalidasi ide dan strategi mereka.
 
 Alih-alih membuang waktu dan modal, pengguna dapat memasukkan berbagai variabel bisnis—seperti harga, HPP, dan strategi pemasaran—dan mendapatkan proyeksi untung-rugi serta rencana aksi instan yang didukung oleh AI.
