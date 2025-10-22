@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -79,12 +80,25 @@
 
 @layer components {
   [data-radix-toast-root] {
-    @apply bg-card border-border shadow-lg;
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: #EFEFEFD9; /* Light grey with opacity */
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
   
   [data-radix-toast-root][data-variant="destructive"] {
-     @apply border-destructive/50 text-destructive;
+     border-color: transparent;
+     color: hsl(var(--foreground));
+  }
+  
+  .dark [data-radix-toast-root] {
+    background-color: #333333D9; /* Dark grey with opacity */
+  }
+
+  .dark [data-radix-toast-root] .text-black {
+    color: white;
+  }
+
+  .dark [data-radix-toast-root] .text-gray-500 {
+    color: #A0A0A0;
   }
 }
