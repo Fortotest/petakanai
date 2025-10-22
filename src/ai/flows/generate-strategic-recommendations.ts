@@ -19,6 +19,7 @@ import {
 const generateStrategicRecommendationsPrompt = ai.definePrompt({
   name: 'generateStrategicRecommendationsPrompt',
   input: { schema: StrategicRecommendationsInputSchema },
+  output: { schema: StrategicRecommendationsOutputSchema },
   model: 'gemini-1.5-flash-latest',
   prompt: `Kamu adalah seorang Business Strategist AI yang jago banget ngasih saran praktis buat UMKM di Indonesia. Gaya bicaramu santai, memotivasi, dan solutif.
 
@@ -49,7 +50,7 @@ Tugasmu adalah memberikan 3-5 Rencana Aksi Prioritas berdasarkan data simulasi b
     *   Hubungkan rekomendasi dengan \`Target Pasar\`. Contoh: "Karena target Anda '{{{targetSegmentation}}}', fokuskan iklan di Instagram Reels dan TikTok."
     *   Rekomendasi harus berupa langkah taktis yang bisa langsung dikerjakan. Mulai setiap poin dengan kata kerja.
     *   Gunakan bahasa Indonesia yang santai dan jelas.
--   **Hasilkan output dalam format string JSON yang valid tanpa markdown. Contoh: {"recommendations": ["Rekomendasi 1", "Rekomendasi 2"]}**
+-   **Hasilkan output dalam format string JSON yang valid tanpa markdown.**
 `
 });
 
@@ -66,13 +67,15 @@ const generateStrategicRecommendationsFlow = ai.defineFlow(
       // Attempt to find a valid JSON object within the text output
       const jsonMatch = textOutput.match(/\{[\s\S]*\}/);
       if (!jsonMatch) {
-        throw new Error("No valid JSON object found in the AI's response.");
+        console.error("No valid JSON object found in AI response:", textOutput);
+        throw new Error("AI returned a non-JSON response for recommendations.");
       }
       const parsedOutput = JSON.parse(jsonMatch[0]);
       return StrategicRecommendationsOutputSchema.parse(parsedOutput);
-    } catch (e) {
-      console.error("Failed to parse AI output:", textOutput, e);
-      throw new Error("AI returned malformed recommendations data.");
+    } catch (e: any) {
+      console.error("Failed to parse AI output for recommendations:", textOutput, e.message);
+      const errorMessage = `AI returned malformed recommendations data. Raw output: ${textOutput}. Error: ${e.message}`;
+      throw new Error(errorMessage);
     }
   }
 );
@@ -83,3 +86,5 @@ export async function generateStrategicRecommendations(
 ): Promise<StrategicRecommendationsOutput> {
   return generateStrategicRecommendationsFlow(input);
 }
+
+    

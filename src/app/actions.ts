@@ -232,7 +232,7 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
         keyConsiderations: "Waduh, AI lagi pusing. Coba lagi beberapa saat, ya."
     };
     strategicPlan = {
-        recommendations: []
+        recommendations: ["Gagal memuat rekomendasi. Coba periksa kembali data yang kamu masukkan atau coba lagi nanti."]
     };
   }
 
@@ -254,3 +254,5 @@ export async function runAnalysis(data: FormData): Promise<AnalysisResult> {
     aiError,
   };
 }
+
+    

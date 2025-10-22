@@ -18,6 +18,7 @@ import {
 const analyzeMarketEntryPrompt = ai.definePrompt({
   name: 'analyzeMarketEntryPrompt',
   input: { schema: AnalyzeMarketEntryInputSchema },
+  output: { schema: AnalyzeMarketEntryOutputSchema },
   model: 'gemini-1.5-flash-latest',
   prompt: `Kamu adalah seorang Business Analyst AI yang ahli di pasar e-commerce Indonesia. Gaya bicaramu santai, to the point, dan mudah dimengerti UMKM.
 
@@ -40,7 +41,7 @@ Kondisi Pasar Umum: {{{marketConditionSummary}}}
 **PENTING**:
 -   Gunakan HANYA informasi dari data di atas. Jangan berasumsi.
 -   Buat seolah-olah kamu sedang memberi nasihat cepat ke teman bisnismu.
--   Hasilkan output dalam format string JSON yang valid tanpa markdown. Contoh: {"evaluation": "...", "keyConsiderations": "..."}
+-   Hasilkan output dalam format string JSON yang valid tanpa markdown.
 `
 });
 
@@ -57,13 +58,16 @@ const analyzeMarketEntryFlow = ai.defineFlow(
       // Attempt to find a valid JSON object within the text output
       const jsonMatch = textOutput.match(/\{[\s\S]*\}/);
       if (!jsonMatch) {
-        throw new Error("No valid JSON object found in the AI's response.");
+        console.error("No valid JSON object found in AI response:", textOutput);
+        throw new Error("AI returned a non-JSON response for market analysis.");
       }
       const parsedOutput = JSON.parse(jsonMatch[0]);
       return AnalyzeMarketEntryOutputSchema.parse(parsedOutput);
-    } catch (e) {
-      console.error("Failed to parse AI output:", textOutput, e);
-      throw new Error("AI returned malformed analysis data.");
+    } catch (e: any) {
+      console.error("Failed to parse AI output for market analysis:", textOutput, e.message);
+      // Construct a meaningful error to bubble up
+      const errorMessage = `AI returned malformed analysis data. Raw output: ${textOutput}. Error: ${e.message}`;
+      throw new Error(errorMessage);
     }
   }
 );
@@ -72,3 +76,5 @@ const analyzeMarketEntryFlow = ai.defineFlow(
 export async function analyzeMarketEntry(input: AnalyzeMarketEntryInput): Promise<AnalyzeMarketEntryOutput> {
   return analyzeMarketEntryFlow(input);
 }
+
+    

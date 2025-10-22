@@ -324,8 +324,12 @@ export default function AnalystPage() {
   };
 
   const onSubmit = async (data: FormData) => {
-    const activeStrategies = Object.values(marketingStrategies).filter(s => data[s.id]);
-    if (activeStrategies.length === 0) {
+    const activeStrategies = Object.values(marketingStrategies).some(s => data[s.id]);
+    const finalBudget = data.costMode === 'budget' 
+      ? (data.totalMarketingBudget || 0) 
+      : (data.targetCAC || 0) * (data.avgSalesPerMonth || 0);
+
+    if (!activeStrategies) {
       toast({
         variant: "destructive",
         title: "Validasi Gagal",
@@ -335,6 +339,16 @@ export default function AnalystPage() {
       return;
     }
     
+    if (activeStrategies && finalBudget === 0) {
+      toast({
+          variant: "destructive",
+          title: "Validasi Gagal",
+          description: "Strategi pemasaran aktif tapi budget nol. Silakan isi budget pemasaran.",
+      });
+      playNotificationSound();
+      return;
+    }
+
     if (data.costOfGoods >= data.sellPrice) {
       toast({
         variant: "destructive",
@@ -345,17 +359,6 @@ export default function AnalystPage() {
       return;
     }
     
-    const finalBudget = data.costMode === 'budget' ? data.totalMarketingBudget : (data.targetCAC || 0) * (data.avgSalesPerMonth || 0);
-
-    if ((data.useVideoContent || data.useKOL || data.usePromo || data.useOtherChannels) && finalBudget === 0) {
-        toast({
-            variant: "destructive",
-            title: "Peringatan Logika",
-            description: "Strategi pemasaran aktif tapi budget nol. Hasil simulasi mungkin tidak akurat.",
-        });
-        playNotificationSound();
-    }
-
     setIsLoading(true);
     setAnalysisResult(null);
     
@@ -364,7 +367,7 @@ export default function AnalystPage() {
         if (resultsEl) {
             resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-    }, 200);
+    }, 500); // Increased delay
 
     try {
       const result = await runAnalysis(data);
@@ -382,10 +385,9 @@ export default function AnalystPage() {
       toast({
         variant: "destructive",
         title: "Terjadi Error",
-        description: "Gagal menjalankan analisis. Silakan coba lagi.",
+        description: error.message || "Gagal menjalankan analisis. Silakan coba lagi.",
       });
       playNotificationSound();
-      // Even on failure, you might want to clear results or handle state
       setAnalysisResult(null);
     } finally {
       setIsLoading(false);
